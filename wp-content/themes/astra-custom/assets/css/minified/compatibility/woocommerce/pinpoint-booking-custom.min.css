@@ -1,0 +1,418 @@
+.summary .DOPBSPCalendar-wrapper{
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  margin: unset;
+  padding: 0 4rem 2rem 4rem;
+  min-width: 240px;
+}
+
+.summary .DOPBSPCalendar-container {
+  background: none;
+  float: left;
+  font-family: 'Dwight' !important;
+  font-size: 22px;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.summary .DOPBSPCalendar-navigation {
+  background-color: transparent;
+  border: none;
+  margin: unset;
+}
+
+.summary .DOPBSPCalendar-navigation .dopbsp-add-btn,
+.summary .DOPBSPCalendar-navigation .dopbsp-remove-btn,
+.summary .DOPBSPCalendar-navigation .dopbsp-previous-btn,
+.summary .DOPBSPCalendar-navigation .dopbsp-next-btn {
+  border-radius: 20px;
+  background-color: var(--ast-global-color-0);
+}
+
+.summary .DOPBSPCalendar-navigation .dopbsp-add-btn .dopbsp-info,
+.summary .DOPBSPCalendar-navigation .dopbsp-next-btn .dopbsp-info,
+.summary .DOPBSPCalendar-navigation .dopbsp-previous-btn .dopbsp-info,
+.summary .DOPBSPCalendar-navigation .dopbsp-remove-btn .dopbsp-info {
+  background-color: var(--ast-global-color-0);
+  font-family: 'Dwight' !important;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+.summary .DOPBSPCalendar-navigation .dopbsp-month-year {
+  color: var(--ast-global-color-0);
+  font-family: 'Dwight Bold' !important;
+  font-size: 30px;
+  font-weight: unset;
+  line-height: 40px;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+.summary .DOPBSPCalendar-navigation .dopbsp-week {
+  margin: 0;
+  overflow: hidden;
+  padding: 0.25rem;
+}
+
+.summary .DOPBSPCalendar-navigation .dopbsp-week .dopbsp-day {
+  color: var(--ast-global-color-0);
+  display: block;
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 16px;
+  line-height: 20px;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.summary .DOPBSPCalendar-day .dopbsp-bind-middle .dopbsp-head .dopbsp-day {
+  font-family: 'Dwight', sans-serif !important;
+}
+
+.summary .DOPBSPCalendar-month {
+  border: none;
+  background: none;
+  margin: 1rem 0 0 0;
+  overflow: hidden;
+  padding: 0;
+}
+
+.summary .DOPBSPCalendar-day {
+  clear: none !important;
+  float: left;
+  padding: 0;
+}
+
+.DOPBSPCalendar-day.dopbsp-selected .dopbsp-bind-middle .dopbsp-body {
+  background-color: var(--ast-global-color-0) !important;
+}
+
+.summary .DOPBSPCalendar-day.dopbsp-past-day {
+  opacity: 1;
+}
+
+.summary .DOPBSPCalendar-day.dopbsp-available .dopbsp-head,
+.summary .DOPBSPCalendar-day .dopbsp-head .dopbsp-co.dopbsp-available,
+.summary .DOPBSPCalendar-day .dopbsp-head .dopbsp-ci.dopbsp-available,
+.summary .DOPBSPCalendar-day .dopbsp-bind-left.dopbsp-extended.dopbsp-available .dopbsp-head {
+  background-color: var(--ast-global-color-0) !important;
+  border-color: var(--ast-global-color-0) !important;
+}
+
+.summary .DOPBSPCalendar-day .dopbsp-bind-middle .dopbsp-body {
+  border: 1px solid #cccccc !important;
+  border-top: none !important;
+  -webkit-box-sizing: content-box !important;
+  -moz-box-sizing: content-box !important;
+  box-sizing: content-box !important;
+  color: var(--ast-global-color-0) !important;
+  display: block;
+  float: none !important;
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 19px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+  width: auto !important;
+  height: 60px !important;
+}
+
+.summary .DOPBSPCalendar-day .dopbsp-bind-middle .dopbsp-body .dopbsp-available {
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 400;
+  line-height: 18px !important;
+
+}
+
+.summary .DOPBSPCalendar-day .dopbsp-bind-middle .dopbsp-body .dopbsp-price {
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 16px !important;
+}
+
+.summary .DOPBSPCalendar-month-year {
+  background-color: #FFF;
+  border: none;
+  color: var(--ast-global-color-0);
+  font-family: 'Dwight Bold', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.summary .DOPBSPCalendar-day.dopbsp-available .dopbsp-body,
+.summary .DOPBSPCalendar-day .dopbsp-body .dopbsp-co.dopbsp-available,
+.summary .DOPBSPCalendar-day .dopbsp-body .dopbsp-ci.dopbsp-available,
+.summary .DOPBSPCalendar-day .dopbsp-bind-left.dopbsp-extended.dopbsp-available .dopbsp-body {
+  border-color: var(--ast-global-color-0) !important;
+}
+
+.summary .DOPBSPCalendar-hours {
+  background-color: transparent;
+  border: none;
+  display: none;
+  padding: 0;
+  padding-bottom: 0;
+  margin-top: 1rem;
+}
+
+.summary .DOPBSPCalendar-hour {
+  cursor: none;
+  display: block;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.summary .DOPBSPCalendar-hour.dopbsp-available .dopbsp-bind-middle {
+  height: 25px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: var(--ast-global-color-0);
+  border-radius: 5px;
+}
+
+.summary .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-hour {
+  font-family: 'Dwight Bold', sans-serif !important;
+}
+
+.summary .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-hour,
+.summary .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-price,
+.summary .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-price-promo,
+.summary .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-available{
+  background-color: transparent;
+  color: #FFF;
+  font-family: 'Dwight', sans-serif !important;
+  float: left;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 16px !important;
+  padding: 0.5rem;
+}
+
+.DOPBSPCalendar-tooltip {
+  border: 1px solid var(--ast-global-color-0) !important;
+  border-radius: 20px !important;
+  color: var(--ast-global-color-0) !important;
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 16px !important;
+  padding: 0.5rem !important;
+  padding-bottom: 0 !important;
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-top, .DOPBSPCalendar-hour .dopbsp-bind-bottom {
+  background-color: var(--ast-global-color-0) !important;
+  border: none !important;
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour.dopbsp-available .dopbsp-bind-middle {
+  border-color: var(--ast-global-color-0) !important;
+  background-color: var(--ast-global-color-0);
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-middle {
+  border-radius: 20px !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 25px !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour.dopbsp-available .dopbsp-hour,
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour.dopbsp-available .dopbsp-bind-middle .dopbsp-info,
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour.dopbsp-available .dopbsp-bind-middle .dopbsp-notes {
+  background-color: var(--ast-global-color-0) !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  color: #FFF;
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-available,
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-hour,
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-price {
+  font-family: 'Dwight' !important;
+  font-size: 14px !important;
+  color: #FFF;
+}
+
+.DOPBSPCalendar-tooltip .DOPBSPCalendar-hour .dopbsp-bind-middle .dopbsp-hour {
+  border-right: 1px solid #FFF;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module, .DOPBSPCalendar-outer-sidebar .dopbsp-module {
+  border-radius: 5px;
+  background-color: var(--ast-global-color-0);
+  padding: 0.5rem;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-input-wrapper.DOPBSPCalendar-left:first-child,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-input-wrapper.DOPBSPCalendar-left:first-child {
+  margin: 0;
+  width: 100%;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-input-wrapper input[type=text],
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-input-wrapper input[type=text] {
+  font-family: 'Dwight', sans-serif;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-input-wrapper label,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-input-wrapper label {
+  color: #FFF;
+  display: block;
+  cursor: pointer;
+  font-family: 'Dwight', sans-serif;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 20px;
+  margin-bottom: 2px;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-input-wrapper label:hover,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-input-wrapper label:hover {
+  color: grey;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect.dopbsp-small,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect.dopbsp-small {
+  width: 100% !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect .dopselect-select,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect .dopselect-select {
+  border-radius: 5px;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect .dopselect-select:hover .dopselect-icon,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect .dopselect-select:hover .dopselect-icon {
+  color: grey !important;
+}
+
+body .DOPBSPCalendar-datepicker.ui-datepicker {
+  border-radius: 5px !important;
+  height: 50px;
+}
+
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-header .ui-datepicker-title,
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-header .ui-datepicker-month,
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-header .ui-datepicker-year {
+  font-family: 'Dwight', sans-serif !important;
+}
+
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-calendar a,
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-calendar .ui-state-disabled span,
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-calendar th {
+  font-family: 'Dwight', sans-serif !important;
+}
+
+body .DOPBSPCalendar-datepicker.ui-datepicker .ui-datepicker-calendar a:hover {
+  border: none !important;
+  line-height: 19px !important;
+  font-family: 'Dwight Bold' !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect.dopbsp-small ul,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect.dopbsp-small ul {
+  width: 215px !important;
+  border-radius: 5px;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect.dopselect-single ul li,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect.dopselect-single ul li {
+  font-family: 'Dwight', sans-serif !important;
+  font-size: 14px !important;
+  width: 100% !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .DOPSelect.dopselect-single ul li:hover,
+.summary .DOPBSPCalendar-sidebar .DOPSelect.dopselect-single ul li.dopselect-selected,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect.dopselect-single ul li:hover,
+.summary .DOPBSPCalendar-outer-sidebar .DOPSelect.dopselect-single ul li.dopselect-selected {
+    background: #CCCCCC !important;
+    color: var(--ast-global-color-0) !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module h4, .DOPBSPCalendar-outer-sidebar .dopbsp-module h4 {
+  color: #FFF !important;
+  font-family: 'Dwight Bold', sans-serif !important;
+  font-size: 22px !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-message, .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-message {
+  background: none;
+  color: #ffffff;
+  font-family: 'Dwight', sans-serif;
+  font-size: 16px;
+  padding: 0;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td {
+  font-family: 'Dwight', sans-serif;
+  font-size: 13px;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td.dopbsp-label,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td.dopbsp-label,
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td.dopbsp-value,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart td.dopbsp-value {
+  color: #FFF;
+}
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart {
+  margin: 0 0 0 0 !important;
+}
+
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart .dopbsp-total td.dopbsp-label,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart .dopbsp-total td.dopbsp-label,
+.summary .DOPBSPCalendar-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart .dopbsp-total td.dopbsp-value,
+.summary .DOPBSPCalendar-outer-sidebar .dopbsp-module .dopbsp-cart-wrapper .dopbsp-cart .dopbsp-total td.dopbsp-value {
+  font-size: 22px;
+  font-weight: normal;
+  font-family: 'Dwight Bold';
+}
+
+.summary .DOPBSPCalendar-info-message {
+  margin: 0 2rem 2rem;
+}
+
+.summary .DOPBSPCalendar-info-message .dopbsp-text,
+.summary .DOPBSPCalendar-info-message .dopbsp-timer {
+  font-family: 'Dwight', sans-serif;
+  font-size: 16px;
+}
+
+.summary .DOPBSPCalendar-info-message.dopbsp-success {
+  border: 1px solid var(--ast-global-color-0);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary .DOPBSPCalendar-info-message.dopbsp-success .dopbsp-icon,
+.summary  .DOPBSPCalendar-info-message.dopbsp-success .dopbsp-close {
+  background-color: var(--ast-global-color-0);
+}
+
+.summary .DOPBSPCalendar-info-message.dopbsp-success .dopbsp-text,
+.summary .DOPBSPCalendar-info-message.dopbsp-success .dopbsp-timer {
+  color: var(--ast-global-color-0);
+}

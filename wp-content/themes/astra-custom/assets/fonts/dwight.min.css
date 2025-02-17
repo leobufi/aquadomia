@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Dwight';
+    src: url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Regular.otf') format('otf'),
+         url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Dwight Bold';
+    src: url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Bold.otf') format('otf'),
+         url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Dwight Italic';
+    src: url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Italic.otf') format('otf'),
+         url('/wp-content/themes/astra-custom/assets/fonts/Dwight-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+p {
+  font-size: 22px;
+}
+
+h1 {
+  font-family: 'Dwight Bold';
+  font-size: 40px;
+}
+h2 {
+  font-family: 'Dwight Bold';
+  font-size: 30px;
+}
+h3 {
+  font-family: 'Dwight Bold';
+  font-size: 24px;
+}
