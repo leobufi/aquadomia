@@ -72,8 +72,8 @@ dfn {
   font-style: italic;
 }
 mark {
-  background: #ff0;
-  color: #000;
+  background: var(--ast-global-color-0);
+  color: var(--ast-global-color-4);
 }
 small {
   font-size: 80%;
