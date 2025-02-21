@@ -221,6 +221,7 @@ function enqueue_custom_scripts() {
     wp_enqueue_script( 'custom-scroll-header-script', get_template_directory_uri() . '/assets/js/minified/custom-scroll-header-script.min.js', array(), null, true );
     wp_enqueue_script( 'hover-image', get_template_directory_uri() . '/assets/js/minified/hover-image.min.js', array(), null, true );
     wp_enqueue_script( 'product-cat', get_template_directory_uri() . '/assets/js/minified/product-cat.min.js', array(), null, true );
+    wp_enqueue_script( 'blog-filter', get_template_directory_uri() . '/assets/js/minified/blog-filter.min.js', array(), null, true );
 }
 add_action( 'wp_footer', 'enqueue_custom_scripts' );
 
@@ -228,6 +229,23 @@ function enqueue_custom_styles() {
     wp_enqueue_style('pinpoint-booking-custom', get_stylesheet_directory_uri() . '/assets/css/minified/compatibility/woocommerce/pinpoint-booking-custom.min.css', array('DOPBSP-css-dopselect'), '1.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles', 200);
+
+function astra_enqueue_infinite_scroll() {
+    wp_enqueue_script('infinite-scroll', get_template_directory_uri() . '/assets/js/minified/infinite-scroll-blog-filter.min.js', array('jquery'), null, true);
+    wp_localize_script('infinite-scroll', 'astra_params', array(
+        'ajaxurl' => admin_url('admin-ajax.php'),
+    ));
+}
+add_action('wp_enqueue_scripts', 'astra_enqueue_infinite_scroll');
+
+function enqueue_slick_slider() {
+    wp_enqueue_style('slick-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css');
+    wp_enqueue_style('slick-theme-css', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css');
+    wp_enqueue_script('slick-js', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js', array('jquery'), null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_slick_slider');
+
+/* REMOVE WOOCOMMERCE HOOKS */
 
 function custom_remove_woocommerce_hooks() {
   remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
@@ -251,7 +269,7 @@ function allow_svg_uploads($mimes) {
 add_filter('upload_mimes', 'allow_svg_uploads');
 
 
-/* DISPLAYED BUTTONS FROM PINPOINT BOOKING */
+/* UNDISPLAY BUTTONS FROM PINPOINT BOOKING */
 
 function custom_modify_display_buttons($content) {
     if (strpos($content, 'add_to_cart_button') !== false || strpos($content, 'product_type_simple') !== false ) {
@@ -306,15 +324,112 @@ add_action( 'woocommerce_after_single_product_summary', 'custom_related_products
 /* INJECTE MAIN WRAPPER PAGE PANIER */
 
 function custom_add_main_wrapper_start() {
-    if ( is_cart() ) {
-        echo '<div class="main-wrapper">';
-    }
+  if ( is_cart() ) {
+    echo '<div class="main-wrapper">';
+  }
 }
 add_action( 'astra_primary_content_top', 'custom_add_main_wrapper_start' );
 
 function custom_add_main_wrapper_end() {
-    if ( is_cart() ) {
+  if ( is_cart() ) {
+    echo '</div><!-- .main-wrapper -->';
+  }
+}
+add_action( 'astra_content_after', 'custom_add_main_wrapper_end' );
+
+/* INJECTE MAIN WRAPPER PAGE BOUTIQUE */
+
+function custom_add_main_wrapper_shop_start() {
+    if ( is_shop() ) {
+        echo '<div class="main-wrapper">';
+    }
+}
+add_action( 'woocommerce_before_main_content', 'custom_add_main_wrapper_shop_start', 15 );
+
+function custom_add_main_wrapper_shop_end() {
+    if ( is_shop() ) {
         echo '</div><!-- .main-wrapper -->';
     }
 }
-add_action( 'astra_content_after', 'custom_add_main_wrapper_end' );
+add_action( 'woocommerce_after_main_content', 'custom_add_main_wrapper_shop_end', 5 );
+
+/* AJAX REQUESTS FOR BLOG FILTER */
+
+function astra_load_more_posts() {
+    $query_vars = json_decode(stripslashes($_POST['query_vars']), true);
+    $query_vars['paged'] = $_POST['page'];
+
+    $query = new WP_Query($query_vars);
+
+    if ($query->have_posts()) :
+        while ($query->have_posts()) : $query->the_post();
+            ?>
+            <a class="article-link-wrapper" href="<?php the_permalink(); ?>">
+              <article class="ast-article-single article-wrapper">
+                <header class="entry-header">
+                  <h2 class="entry-title">
+                    <?php the_title(); ?>
+                  </h2>
+                </header>
+                <div class="entry-meta">
+                  <span class="entry-date"><?php the_date(); ?></span>
+                  <span class="entry-author"><?php the_author(); ?></span>
+                </div>
+              </article>
+            </a>
+            <?php
+        endwhile;
+    endif;
+
+    wp_reset_postdata();
+    die();
+}
+add_action('wp_ajax_load_more_posts', 'astra_load_more_posts');
+add_action('wp_ajax_nopriv_load_more_posts', 'astra_load_more_posts');
+
+function load_filtered_posts() {
+  $filter_year = isset($_GET['filter_year']) ? intval($_GET['filter_year']) : '';
+
+  // Créer une nouvelle instance de WP_Query pour interroger uniquement les articles
+  $args = array(
+    'post_type' => 'post', // Interroger uniquement les articles
+    'posts_per_page' => -1, // Afficher tous les articles si une année est sélectionnée, sinon 10 articles
+    'orderby' => 'date', // Trier par date
+    'order' => 'DESC', // Ordre décroissant
+  );
+
+  if ($filter_year) {
+    $args['year'] = $filter_year;
+  }
+
+  $custom_query = new WP_Query($args);
+
+  if ($custom_query->have_posts()) :
+    while ($custom_query->have_posts()) :
+      $custom_query->the_post();
+      ?>
+      <a class="article-link-wrapper" href="<?php the_permalink(); ?>">
+        <article class="ast-article-single article-wrapper">
+          <header class="entry-header">
+            <h2 class="entry-title">
+              <?php the_title(); ?>
+            </h2>
+          </header>
+          <div class="entry-meta">
+            <span class="entry-date"><?php the_date(); ?></span>
+            <span class="entry-author"><?php the_author(); ?></span>
+          </div>
+        </article>
+      </a>
+      <?php
+    endwhile;
+
+    wp_reset_postdata(); // Réinitialiser la requête principale après la boucle personnalisée
+  else :
+    echo '<p>Aucun article trouvé.</p>'; // Message de débogage
+  endif;
+
+  die();
+}
+add_action('wp_ajax_load_filtered_posts', 'load_filtered_posts');
+add_action('wp_ajax_nopriv_load_filtered_posts', 'load_filtered_posts');

@@ -3684,6 +3684,9 @@ button.pswp__button--zoom:hover {
 .woocommerce-checkout .wc-proceed-to-checkout {
   zoom: 1;
   padding: 1em 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 #add_payment_method .wc-proceed-to-checkout::after,
 #add_payment_method .wc-proceed-to-checkout::before,
@@ -3706,7 +3709,7 @@ button.pswp__button--zoom:hover {
   text-align: center;
   margin-bottom: 1em;
   font-size: 1.25em;
-  padding: 1em;
+  /* padding: 1em; */
 }
 #add_payment_method .cart-collaterals .shipping_calculator .button,
 .woocommerce-cart .cart-collaterals .shipping_calculator .button,
@@ -4455,6 +4458,7 @@ button.pswp__button--zoom:hover {
   align-items: flex-start;
   justify-content: flex-start;
   font-size: 16px;
+  padding-left: 0.5rem;
 }
 
 .woocommerce-cart table.shop_table td.product-name .variation .variation-IDderservation12 {
@@ -4533,6 +4537,7 @@ button.pswp__button--zoom:hover {
 .woocommerce-cart .wc-proceed-to-checkout a.checkout-button {
   font-size: 1.1em;
   line-height: 1.8em;
+  width: 25%;
 }
 .woocommerce-page.woocommerce-checkout form.checkout.woocommerce-checkout:after,
 .woocommerce.woocommerce-checkout form.checkout.woocommerce-checkout:after {

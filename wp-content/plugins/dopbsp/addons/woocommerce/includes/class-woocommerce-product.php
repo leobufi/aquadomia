@@ -195,6 +195,7 @@ if (!class_exists('DOPBSPWooCommerceProduct')){
                                                                             'dopbsp_woocommerce_calendar',
                                                                             true));
 
+
             if ($dopbsp_woocommerce_options['calendar'] != ''
                     && $dopbsp_woocommerce_options['calendar'] != '0'){
                 $calendar = $wpdb->get_row($wpdb->prepare('SELECT * FROM '.$DOPBSP->tables->calendars.' WHERE id=%d',
@@ -210,5 +211,7 @@ if (!class_exists('DOPBSPWooCommerceProduct')){
 
             return $price;
         }
+
+
     }
 }

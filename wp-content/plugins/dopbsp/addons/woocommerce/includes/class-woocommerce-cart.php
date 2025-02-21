@@ -131,6 +131,10 @@ if (!class_exists('DOPBSPWooCommerceCart')){
                 if ($cart_item['product_id'] == $product_id){
                     $reservation_data['cart_item_key'] = $cart_item_key;
                     $reservation_data['token'] = $cart_item['dopbsp_token'];
+                    if (!isset($_POST['dopbsp_token']) || empty($_POST['dopbsp_token'])) {
+                      error_log('Erreur: dopbsp_token est absent ou vide.');
+                      return;
+                    }
 
                     if (!$this->validateOverlap($calendar_id,
                                                 $product_id,
@@ -278,7 +282,7 @@ if (!class_exists('DOPBSPWooCommerceCart')){
 
                         if ($woocommerce->version>=3){
                             $product = $cart_item['data'];
-                            $product->set_price($cart_item['data']->price);
+                            // $product->set_price($cart_item['data']->price);
                         }
                     }
                 }

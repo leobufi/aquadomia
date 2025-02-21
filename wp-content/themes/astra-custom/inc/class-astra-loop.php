@@ -217,7 +217,7 @@ if ( ! class_exists( 'Astra_Loop' ) ) :
 		 * @return void
 		 */
 		public function template_parts_content_top() {
-			if ( is_archive() ) {
+			if ( is_page() ) {
 				astra_content_while_before();
 			}
 		}

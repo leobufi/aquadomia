@@ -20,6 +20,9 @@ legend,
 li,
 ol,
 p,
+span,
+label,
+input,
 pre,
 textarea,
 ul {
@@ -870,6 +873,105 @@ body {
 #primary {
   margin: 5em 0;
 }
+
+.page-main-container {
+  display: flex;
+  column-gap: 5rem;
+  padding: 2rem 4rem;
+  align-items: flex-end;
+}
+
+.page-main-container .entry-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 1rem;
+  margin-bottom: 0;
+}
+
+.page-main-container .filter-title {
+  font-size: 22px;
+  font-family: 'Dwight Bold';
+  cursor: pointer;
+}
+
+.page-main-container .filter-title:hover {
+  text-decoration: underline;
+}
+
+#article-filter-form .year-filters {
+  display: none;
+}
+
+#article-filter-form .year-filters.active {
+  display: block;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--ast-global-color-0);
+  overflow: hidden;
+}
+
+#article-filter-form .year-filters label {
+  width: 150px;
+  font-size: 22px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#article-filter-form .year-filters label:hover {
+  font-weight: 700;
+  text-decoration: underline;
+}
+#article-filter-form .year-filters label.selected {
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+#article-filter-form .year-filters label input {
+  display: none;
+}
+
+.year-filters .slick-prev,
+.year-filters .slick-next {
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  cursor: pointer;
+  color: black;
+}
+
+.year-filters .slick-prev:hover,
+.year-filters .slick-prev:focus,
+.year-filters .slick-next:hover,
+.year-filters .slick-next:focus {
+  outline: none;
+  background: transparent;
+}
+
+.year-filters .slick-prev:before,
+.year-filters .slick-next:before {
+  font-family: 'Dwight';
+  font-size: 20px;
+  line-height: 1;
+  opacity: .75;
+  color: black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+.year-filters .slick-prev {
+  left: -10px;
+  z-index: 100;
+}
+
+.year-filters .slick-next {
+  right: -10px;
+  z-index: 100;
+}
+
 .ast-separate-container {
   background-color: #f5f5f5;
 }
@@ -892,6 +994,53 @@ body {
   margin: 0;
   padding: 5.34em 6.67em;
 }
+
+.ast-container .article-wrapper {
+  border-top: 1px solid var(--ast-global-color-0);
+  margin: 0;
+  padding: 1.5rem 4rem;
+}
+
+.article-link-wrapper:hover .ast-article-single.article-wrapper{
+  background-color: var(--ast-global-color-0);
+}
+
+.article-link-wrapper .entry-header h2{
+  margin-bottom: 0;
+}
+
+.article-link-wrapper:hover .entry-header h2{
+  color: var(--ast-global-color-4);
+}
+
+.article-link-wrapper:hover .entry-meta span {
+  color: var(--ast-global-color-4);
+}
+
+.ast-container .ast-article-single.article-wrapper {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  align-items: center;
+}
+
+.ast-container .ast-article-single.article-wrapper .entry-header {
+  padding-right: 13rem;
+  margin-bottom: 0;
+}
+
+.ast-container .ast-article-single.article-wrapper .entry-meta {
+  text-align: left;
+}
+.ast-container .ast-article-single.article-wrapper .entry-date {
+  font-family: 'Dwight Bold';
+  font-size: 30px;
+}
+.ast-container .ast-article-single.article-wrapper .entry-author {
+  font-size: 17px;
+  font-weight: 400;
+}
+
+
 .ast-separate-container .blog-layout-1 {
   padding: 0;
   border-bottom: 0;
@@ -2285,9 +2434,9 @@ input[type="color"]::-webkit-color-swatch-wrapper {
 input[type="color"]::-webkit-color-swatch {
   border: none;
 }
-.page .entry-header {
+/* .page .entry-header {
   margin-bottom: 1.5em;
-}
+} */
 .search .entry-header {
   margin-bottom: 1em;
 }
@@ -2308,6 +2457,11 @@ input[type="color"]::-webkit-color-swatch {
 .entry-content {
   word-wrap: break-word;
 }
+
+.entry-content .woocommerce-info {
+  font-family: 'Dwight';
+}
+
 .entry-content .wp-audio-shortcode,
 .entry-content .wp-embedded-audio,
 .entry-content .wp-embedded-video,
