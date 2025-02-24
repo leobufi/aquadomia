@@ -22,7 +22,7 @@ get_header(); ?>
 
 	<?php astra_primary_content_top(); ?>
   <form id="article-filter-form" method="GET" action="">
-    <div class="page-main-container">
+    <div class="page-main-container border-bottom">
       <header class="entry-header">
         <h1 class="entry-title" itemprop="headline">
           <?php

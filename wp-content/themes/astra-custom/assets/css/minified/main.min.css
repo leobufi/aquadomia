@@ -881,6 +881,10 @@ body {
   align-items: flex-end;
 }
 
+.page-main-container.border-bottom {
+  border-bottom: 1px solid var(--ast-global-color-0);
+}
+
 .page-main-container .entry-header {
   display: flex;
   flex-direction: column;
@@ -906,7 +910,7 @@ body {
 #article-filter-form .year-filters.active {
   display: block;
   padding: 1.5rem 2rem;
-  border-top: 1px solid var(--ast-global-color-0);
+  border-bottom: 1px solid var(--ast-global-color-0);
   overflow: hidden;
 }
 
@@ -996,7 +1000,7 @@ body {
 }
 
 .ast-container .article-wrapper {
-  border-top: 1px solid var(--ast-global-color-0);
+  border-bottom: 1px solid var(--ast-global-color-0);
   margin: 0;
   padding: 1.5rem 4rem;
 }

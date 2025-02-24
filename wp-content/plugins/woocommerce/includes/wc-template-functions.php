@@ -1833,9 +1833,7 @@ if ( ! function_exists( 'woocommerce_template_single_add_to_cart' ) ) {
 			 *
 			 * @since 1.0.0
 			 */
-      echo '<div class="main-wrapper align-right">';
 			do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
-      echo '</div>';
 		}
 	}
 }

@@ -321,6 +321,30 @@ function custom_related_products_section() {
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 add_action( 'woocommerce_after_single_product_summary', 'custom_related_products_section', 20 );
 
+/* REMPLACE ADD TO CART BUTTON PAGE PRODUIT */
+
+function custom_woocommerce_template_single_add_to_cart() {
+    global $product;
+
+    if ( $product instanceof WC_Product ) {
+        /**
+         * Single product add to cart action.
+         *
+         * @since 1.0.0
+         */
+        echo '<div class="main-wrapper align-right">';
+        do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
+        echo '</div>';
+    }
+}
+
+function replace_woocommerce_add_to_cart_template() {
+    remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30 );
+    add_action( 'woocommerce_single_product_summary', 'custom_woocommerce_template_single_add_to_cart', 30 );
+}
+add_action( 'init', 'replace_woocommerce_add_to_cart_template' );
+
+
 /* INJECTE MAIN WRAPPER PAGE PANIER */
 
 function custom_add_main_wrapper_start() {
