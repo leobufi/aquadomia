@@ -1054,7 +1054,7 @@ p.demo_store[data-position="bottom"] {
 }
 
 .woocommerce-js .main-wrapper {
-  padding: 2rem 4rem 4rem;
+  padding: 2rem 4rem;
 }
 
 .woocommerce-js .summary .main-wrapper {
@@ -1144,6 +1144,13 @@ p.demo_store[data-position="bottom"] {
 .woocommerce-js div.product div.summary .main-wrapper .single-product-4cols {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: 2rem;
+}
+
+.woocommerce-js div.product div.summary .main-wrapper .single-product-flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
   column-gap: 2rem;
 }
 

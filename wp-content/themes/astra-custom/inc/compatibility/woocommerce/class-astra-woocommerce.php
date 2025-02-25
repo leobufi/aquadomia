@@ -3932,12 +3932,16 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       $taux_reussite = $stats_cursus_certifs['taux_reussite'];
       $taux_satisfaction = $stats_cursus_certifs['taux_satisfaction'];
 
-      if (! empty($stats_cursus_certifs) & $taux_reussite > 0 & $taux_satisfaction > 0 ) {
+      if (! empty($stats_cursus_certifs)) {
         echo '<div class="main-wrapper stats">';
               // echo '<pre>';
-              //   var_dump($product_fields);
+              //   var_dump($stats_cursus_certifs);
               // echo '</pre>';
-          echo '<div class="single-product-4cols">';
+          if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
+            echo '<div class="single-product-4cols">';
+          } else {
+            echo '<div class="single-product-flex-around">';
+          }
 
             $wrapper_structure = array('taux_reussite', 'taux_satisfaction', 'cursus', 'logos_ecoles');
             foreach ( $wrapper_structure as $value ) {
@@ -3980,7 +3984,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
                   $logo_1_url = $logo_1['url'];
                   $logo_2 = $stats_cursus_certifs['logo_ecole_2'];
                   $logo_2_url = $logo_2['url'];
-                  if ( ! empty( $logo_1 ) & ! empty($logo_2)) {
+                  if ( ! empty( $logo_1 ) || ! empty($logo_2)) {
                     echo '<div class="single-product-stats">';
                       echo '<img src="' . esc_url( $logo_1_url ) . '" alt="Certification formation plongée" />';
                       echo '<img src="' . esc_url( $logo_2_url ) . '" alt="Certification formation plongée" />';

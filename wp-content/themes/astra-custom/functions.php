@@ -222,6 +222,7 @@ function enqueue_custom_scripts() {
     wp_enqueue_script( 'hover-image', get_template_directory_uri() . '/assets/js/minified/hover-image.min.js', array(), null, true );
     wp_enqueue_script( 'product-cat', get_template_directory_uri() . '/assets/js/minified/product-cat.min.js', array(), null, true );
     wp_enqueue_script( 'blog-filter', get_template_directory_uri() . '/assets/js/minified/blog-filter.min.js', array(), null, true );
+    wp_enqueue_script( 'back-to-blog-btn', get_template_directory_uri() . '/assets/js/minified/back-to-blog-btn.min.js', array(), null, true );
 }
 add_action( 'wp_footer', 'enqueue_custom_scripts' );
 
@@ -267,7 +268,6 @@ function allow_svg_uploads($mimes) {
     return $mimes;
 }
 add_filter('upload_mimes', 'allow_svg_uploads');
-
 
 /* UNDISPLAY BUTTONS FROM PINPOINT BOOKING */
 
@@ -389,14 +389,14 @@ function astra_load_more_posts() {
         while ($query->have_posts()) : $query->the_post();
             ?>
             <a class="article-link-wrapper" href="<?php the_permalink(); ?>">
-              <article class="ast-article-single article-wrapper">
+              <article id="post-<?php the_ID(); ?>" class="ast-article-single article-wrapper" data-post-id="<?php the_ID(); ?>">
                 <header class="entry-header">
                   <h2 class="entry-title">
                     <?php the_title(); ?>
                   </h2>
                 </header>
                 <div class="entry-meta">
-                  <span class="entry-date"><?php the_date(); ?></span>
+                  <span class="entry-date"><?php the_date('d.m.Y'); ?></span>
                   <span class="entry-author"><?php the_author(); ?></span>
                 </div>
               </article>
@@ -433,14 +433,14 @@ function load_filtered_posts() {
       $custom_query->the_post();
       ?>
       <a class="article-link-wrapper" href="<?php the_permalink(); ?>">
-        <article class="ast-article-single article-wrapper">
+        <article id="post-<?php the_ID(); ?>" class="ast-article-single article-wrapper" data-post-id="<?php the_ID(); ?>">
           <header class="entry-header">
             <h2 class="entry-title">
               <?php the_title(); ?>
             </h2>
           </header>
           <div class="entry-meta">
-            <span class="entry-date"><?php the_date(); ?></span>
+            <span class="entry-date"><?php the_date('d.m.Y'); ?></span>
             <span class="entry-author"><?php the_author(); ?></span>
           </div>
         </article>

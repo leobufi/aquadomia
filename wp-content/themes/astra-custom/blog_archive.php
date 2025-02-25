@@ -10,6 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+
 get_header(); ?>
 
 <?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
@@ -22,7 +23,7 @@ get_header(); ?>
 
 	<?php astra_primary_content_top(); ?>
   <form id="article-filter-form" method="GET" action="">
-    <div class="page-main-container border-bottom">
+    <div class="page-title-container">
       <header class="entry-header">
         <h1 class="entry-title" itemprop="headline">
           <?php
@@ -82,14 +83,14 @@ get_header(); ?>
         $custom_query->the_post();
         ?>
         <a class="article-link-wrapper" href="<?php the_permalink(); ?>">
-          <article class="ast-article-single article-wrapper">
+          <article id="post-<?php the_ID(); ?>" class="ast-article-single article-wrapper" data-post-id="<?php the_ID(); ?>">
             <header class="entry-header">
               <h2 class="entry-title">
                 <?php the_title(); ?>
               </h2>
             </header>
             <div class="entry-meta">
-              <span class="entry-date"><?php the_date(); ?></span>
+              <span class="entry-date"><?php the_date('d.m.Y'); ?></span>
               <span class="entry-author"><?php the_author(); ?></span>
             </div>
           </article>

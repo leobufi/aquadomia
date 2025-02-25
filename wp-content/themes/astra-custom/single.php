@@ -19,7 +19,6 @@ get_header(); ?>
 	<?php get_sidebar(); ?>
 
 <?php endif ?>
-
 	<div id="primary" <?php astra_primary_class(); ?>>
 
 		<?php astra_primary_content_top(); ?>
