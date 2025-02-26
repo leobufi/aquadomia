@@ -222,7 +222,7 @@ th {
  */
 .ast-container {
   max-width: 100%;
-  background-color: var(--ast-global-color-4);
+  /* background-color: var(--ast-global-color-4); */
 }
 .ast-container,
 .ast-container-fluid {
@@ -903,6 +903,17 @@ body {
   cursor: pointer;
 }
 
+.page-title-container .inset-title {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  background-color: var(--ast-global-color-0);
+  color: #FFF;
+  font-family: 'Dwight Bold';
+  text-align: center;
+}
+
 .page-title-container .filter-title:hover {
   text-decoration: underline;
 }
@@ -938,6 +949,8 @@ body {
   display: none;
 }
 
+.sub-profil-wrapper .slick-prev,
+.sub-profil-wrapper .slick-next,
 .year-filters .slick-prev,
 .year-filters .slick-next {
   position: absolute;
@@ -950,6 +963,10 @@ body {
   color: black;
 }
 
+.sub-profil-wrapper .slick-prev:hover,
+.sub-profil-wrapper .slick-prev:focus,
+.sub-profil-wrapper .slick-next:hover,
+.sub-profil-wrapper .slick-next:focus,
 .year-filters .slick-prev:hover,
 .year-filters .slick-prev:focus,
 .year-filters .slick-next:hover,
@@ -958,6 +975,8 @@ body {
   background: transparent;
 }
 
+.sub-profil-wrapper .slick-prev:before,
+.sub-profil-wrapper .slick-next:before,
 .year-filters .slick-prev:before,
 .year-filters .slick-next:before {
   font-family: 'Dwight';
@@ -970,14 +989,125 @@ body {
 }
 
 
+.sub-profil-wrapper .slick-prev,
 .year-filters .slick-prev {
   left: -10px;
   z-index: 100;
 }
 
+.user-info .slick-next,
 .year-filters .slick-next {
   right: -10px;
   z-index: 100;
+}
+
+.about-page .ast-article-image-container--wide {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: unset;
+  width: unset;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+  z-index: -10;
+}
+
+.about-page .entry-header {
+  display: none;
+}
+
+.about-page .about-headline {
+  padding: 1rem 4rem;
+  font-family: 'Dwight Bold';
+  color: var(--ast-global-color-4);
+  width: 66%;
+  margin-left: unset !important;
+  margin-right: unset !important;
+}
+
+.about-page .team-main-container {
+  position: absolute;
+  top: 100vh;
+  left: 0;
+  right: 0;
+  background-color: var(--ast-global-color-4);
+}
+
+.about-page .inset-title h2{
+  color: var(--ast-global-color-4);
+  margin-bottom: 0;
+}
+
+.about-page .team-main-container .sub-profil-wrapper {
+  padding: 2rem 4rem;
+}
+
+.about-page .team-main-container .sub-profil-wrapper .slick-track {
+  display: flex;
+  column-gap: 2rem;
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 3rem;
+  padding: 2rem 4rem;
+  border-bottom: 1px solid var(--ast-global-color-0);
+}
+
+.about-page .team-main-container .sub-profil-wrapper .user-info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-info .user-name {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-right: 3rem;
+}
+
+.about-page .team-main-container .sub-profil-wrapper .user-info p,
+.about-page .team-main-container .main-profil-wrapper .user-info p {
+  margin-bottom: 0;
+  line-height: 27px;
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-bio p {
+  line-height: 27px;
+  margin-top: 1rem;
+}
+
+.about-page .team-main-container .sub-profil-wrapper .user-info .user-name h2,
+.about-page .team-main-container .main-profil-wrapper .user-info .user-name h2{
+  margin-bottom: 0;
+}
+
+.about-page .team-main-container .sub-profil-wrapper .user-info .user-name .role,
+.about-page .team-main-container .main-profil-wrapper .user-info .user-name .associe{
+  font-size: 30px;
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-info .user-image img{
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+  border-radius: 90px;
+}
+
+.about-page .team-main-container .sub-profil-wrapper .user-info .user-image img{
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 90px;
+  margin-bottom: 2rem;
 }
 
 .ast-separate-container {
