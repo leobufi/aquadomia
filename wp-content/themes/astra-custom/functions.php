@@ -333,9 +333,22 @@ function custom_woocommerce_template_single_add_to_cart() {
          *
          * @since 1.0.0
          */
+        global $post;
+
+        $dopbsp_woocommerce_options = array(
+            'calendar' => get_post_meta($post->ID, 'dopbsp_woocommerce_calendar', true)
+        );
+
+        if ($dopbsp_woocommerce_options['calendar'] != '' && $dopbsp_woocommerce_options['calendar'] != '0') {
         echo '<div class="main-wrapper align-right">';
         do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
         echo '</div>';
+      } else if ($product->get_price()) {
+          echo '<div id="add-to-cart" class="main-wrapper">';
+          do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
+          echo '</div>';
+        }
+
     }
 }
 
@@ -346,21 +359,21 @@ function replace_woocommerce_add_to_cart_template() {
 add_action( 'init', 'replace_woocommerce_add_to_cart_template' );
 
 
-/* INJECTE MAIN WRAPPER PAGE PANIER */
+// /* INJECTE MAIN WRAPPER PAGE PANIER */
 
-function custom_add_main_wrapper_start() {
-  if ( is_cart() ) {
-    echo '<div class="main-wrapper">';
-  }
-}
-add_action( 'astra_primary_content_top', 'custom_add_main_wrapper_start' );
+// function custom_add_main_wrapper_start() {
+//   if ( is_cart() ) {
+//     echo '<div class="main-wrapper">';
+//   }
+// }
+// add_action( 'astra_primary_content_top', 'custom_add_main_wrapper_start' );
 
-function custom_add_main_wrapper_end() {
-  if ( is_cart() ) {
-    echo '</div><!-- .main-wrapper -->';
-  }
-}
-add_action( 'astra_content_after', 'custom_add_main_wrapper_end' );
+// function custom_add_main_wrapper_end() {
+//   if ( is_cart() ) {
+//     echo '</div><!-- .main-wrapper -->';
+//   }
+// }
+// add_action( 'astra_content_after', 'custom_add_main_wrapper_end' );
 
 /* INJECTE MAIN WRAPPER PAGE BOUTIQUE */
 

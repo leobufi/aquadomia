@@ -3734,6 +3734,11 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
     public function single_product_top_content($product_type = '') {
 
       global $product;
+      global $post;
+
+      $dopbsp_woocommerce_options = array(
+          'calendar' => get_post_meta($post->ID, 'dopbsp_woocommerce_calendar', true)
+      );
 
       echo '<div class="single-product-top-main-wrapper">';
 
@@ -3756,19 +3761,25 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
                 echo '</div>';
                 break;
               case 'price':
-                /**
-                 * Add Product Price on single product page for all products.
-                 */
+
+                if ($dopbsp_woocommerce_options['calendar'] != '' && $dopbsp_woocommerce_options['calendar'] != '0') {
+                  $anchor = "#calendar";
+                } else {
+                  $anchor = "#add-to-cart";
+                }
+
                 if (! empty($product->get_price())) {
                   echo'<div class="single-product-price">';
                   do_action( 'astra_woo_single_price_before' );
                   woocommerce_template_single_price();
                   do_action( 'astra_woo_single_price_after' );
-                  echo '<a href="#calendar" class="single-product-anchor-button">Réserver</a>';
+                  echo '<a href="' . $anchor . '" class="single-product-anchor-button">Réserver</a>';
                   echo '</div>';
                 } else {
+                  $contact_page = get_page_by_title('Contact');
+                  $url = get_permalink($contact_page->ID);
                   echo'<div class="single-product-price">';
-                  echo '<a href="" class="single-product-anchor-button">En savoir plus / Demander un devis</a>';
+                  echo '<a href="'. $url .'" class="single-product-anchor-button">En savoir plus / Demander un devis</a>';
                   echo '</div>';
                 }
                 break;
@@ -3923,6 +3934,49 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
     }
 
+    public function single_product_financement($product_type = '') {
+
+      global $product;
+
+      $product_fields = get_fields( $product->get_id(), true );
+      $formation_financable = get_post_meta($product->get_id(), 'formation_financable', true);
+      $wheel_icon = Astra_Icons::get_icons('wheel');
+      $contact_icon = Astra_Icons::get_icons('contact');
+      $phone_icon = Astra_Icons::get_icons('phone');
+
+      if ($formation_financable) {
+      ?>
+        <div class="main-wrapper">
+          <div class="single-product-flex-around">
+            <div class="block">
+              <div class="title">
+                <?php echo $wheel_icon; ?>
+                <span class="financement">
+                  Formation éligible au financement de formations professionnelles
+                </span>
+              </div>
+              <span>Cette formation peut être prise en charge en qualité de formation  professionnelle</span>
+            </div>
+            <div class="block">
+              <span>Contactez-nous pour tout renseignement ou  démarche à effectuer</span>
+              <div class="contact">
+                <div class="email">
+                  <?php echo $contact_icon; ?>
+                  <span>contact@aquadomia.com</span>
+                </div>
+                <hr>
+                <div class="phone">
+                  <?php echo $phone_icon; ?>
+                  <span>+33 (0)4 13 333 800</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <?php
+      }
+    }
+
     public function single_product_stats_cursus_certifs_block($product_type = '') {
 
       global $product;
@@ -3931,70 +3985,77 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       $stats_cursus_certifs = $product_fields['stats_cursus_certifs'];
       $taux_reussite = $stats_cursus_certifs['taux_reussite'];
       $taux_satisfaction = $stats_cursus_certifs['taux_satisfaction'];
+      $cursus = $stats_cursus_certifs['cursus'];
+      $logo_1 = $stats_cursus_certifs['logo_ecole_1'];
+      $logo_2 = $stats_cursus_certifs['logo_ecole_2'];
+
 
       if (! empty($stats_cursus_certifs)) {
-        echo '<div class="main-wrapper stats">';
-              // echo '<pre>';
-              //   var_dump($stats_cursus_certifs);
-              // echo '</pre>';
-          if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
-            echo '<div class="single-product-4cols">';
-          } else {
-            echo '<div class="single-product-flex-around">';
-          }
+        // echo '<pre>';
+        //   var_dump($stats_cursus_certifs);
+        // echo '</pre>';
+        if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
+          echo '<div class="main-wrapper stats">';
+          echo '<div class="single-product-4cols">';
+        } else if (! empty($cursus) || ! empty($logo_1) || ! empty($logo_2)) {
+          echo '<div class="main-wrapper stats">';
+          echo '<div class="single-product-flex-around">';
+        }
 
-            $wrapper_structure = array('taux_reussite', 'taux_satisfaction', 'cursus', 'logos_ecoles');
-            foreach ( $wrapper_structure as $value ) {
-              switch ( $value ) {
-                case 'taux_reussite':
-                  if ( $taux_reussite > 0 ) {
-                    echo '<div class="single-product-stats">';
-                      echo '<h3 class="inset-title">';
-                        echo 'Taux de réussite';
-                      echo '</h3>';
-                      echo '<div class="stat">' . $taux_reussite . ' %</div>';
-                    echo '</div>';
-                  }
-                break;
-                case 'taux_satisfaction':
-                  if ( $taux_satisfaction > 0 ) {
-                    echo '<div class="single-product-stats">';
-                      echo '<h3 class="inset-title">';
-                        echo 'Taux de satisfaction';
-                      echo '</h3>';
-                      echo '<div class="stat">' . $taux_satisfaction . ' %</div>';
-                    echo '</div>';
-                  }
-                break;
-                case 'cursus':
-                  $cursus = $stats_cursus_certifs['cursus'];
-                  $cursus_file = $stats_cursus_certifs['cursus_file'];
-                  $cursus_file_url = $cursus_file['link'];
-                  if ( ! empty( $cursus ) ) {
-                    echo '<div class="single-product-stats">';
-                      echo '<h3 class="inset-title full">';
-                        echo $cursus;
-                      echo '</h3>';
-                      echo '<a href="' . esc_url($cursus_file_url) . '" target="_blank">Télécharger le parcours de formation</a>';
-                    echo '</div>';
-                  }
-                break;
-                case 'logos_ecoles':
-                  $logo_1 = $stats_cursus_certifs['logo_ecole_1'];
-                  $logo_1_url = $logo_1['url'];
-                  $logo_2 = $stats_cursus_certifs['logo_ecole_2'];
-                  $logo_2_url = $logo_2['url'];
-                  if ( ! empty( $logo_1 ) || ! empty($logo_2)) {
-                    echo '<div class="single-product-stats">';
-                      echo '<img src="' . esc_url( $logo_1_url ) . '" alt="Certification formation plongée" />';
-                      echo '<img src="' . esc_url( $logo_2_url ) . '" alt="Certification formation plongée" />';
-                    echo '</div>';
-                  }
-                break;
-              }
+          $wrapper_structure = array('taux_reussite', 'taux_satisfaction', 'cursus', 'logos_ecoles');
+          foreach ( $wrapper_structure as $value ) {
+            switch ( $value ) {
+              case 'taux_reussite':
+                if ( $taux_reussite > 0 ) {
+                  echo '<div class="single-product-stats">';
+                    echo '<h3 class="inset-title">';
+                      echo 'Taux de réussite';
+                    echo '</h3>';
+                    echo '<div class="stat">' . $taux_reussite . ' %</div>';
+                  echo '</div>';
+                }
+              break;
+              case 'taux_satisfaction':
+                if ( $taux_satisfaction > 0 ) {
+                  echo '<div class="single-product-stats">';
+                    echo '<h3 class="inset-title">';
+                      echo 'Taux de satisfaction';
+                    echo '</h3>';
+                    echo '<div class="stat">' . $taux_satisfaction . ' %</div>';
+                  echo '</div>';
+                }
+              break;
+              case 'cursus':
+                $cursus_file = $stats_cursus_certifs['cursus_file'];
+                $cursus_file_url = $cursus_file['link'];
+                if ( ! empty( $cursus ) ) {
+                  echo '<div class="single-product-stats">';
+                    echo '<h3 class="inset-title full">';
+                      echo $cursus;
+                    echo '</h3>';
+                    echo '<a href="' . esc_url($cursus_file_url) . '" target="_blank">Télécharger le parcours de formation</a>';
+                  echo '</div>';
+                }
+              break;
+              case 'logos_ecoles':
+                $logo_1_url = $logo_1['url'];
+                $logo_2_url = $logo_2['url'];
+                if ( ! empty( $logo_1 ) || ! empty($logo_2)) {
+                  echo '<div class="single-product-stats">';
+                    echo '<img src="' . esc_url( $logo_1_url ) . '" alt="Certification formation plongée" />';
+                    echo '<img src="' . esc_url( $logo_2_url ) . '" alt="Certification formation plongée" />';
+                  echo '</div>';
+                }
+              break;
             }
+          }
+        if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
           echo '</div>';
-        echo '</div>';
+          echo '</div>';
+        } else if (! empty($cursus) || ! empty($logo_1) || ! empty($logo_2)) {
+          echo '</div>';
+          echo '</div>';
+        }
       }
     }
 
@@ -4006,9 +4067,10 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
       foreach ($attributes as $attribute) {
         $terms = $attribute->get_terms();
-        $term_count = count($terms);
-        if ($attribute->get_visible() & $term_count > 10) {
-          if (!empty($terms)) {
+        if (is_array($terms) || $terms instanceof Countable) {
+          $term_count = count($terms);
+          if ($attribute->get_visible() & $term_count > 10) {
+            if (!empty($terms)) {
               echo '<div class="main-wrapper large">';
                 echo '<h3 class="inset-title">' . wc_attribute_label($attribute->get_name()) . '</h3>';
                   echo '<div class="single-product-attributes-columns">';
@@ -4023,6 +4085,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
                   }
                   echo '</div>';
               echo '</div>';
+            }
           }
         }
       }
@@ -4033,17 +4096,21 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       global $product;
 
       $attributes = $product->get_attributes();
+      $visible_attributes = array_filter($attributes, function($attribute) {
+        return $attribute->get_visible();
+      });
 
-      if (! empty($attributes)) {
+      if (! empty($visible_attributes)) {
         echo '<div class="main-wrapper">';
         echo '<div class="single-product-attributes-columns">';
         foreach ($attributes as $attribute) {
           $terms = $attribute->get_terms();
+          if (is_array($terms) || $terms instanceof Countable) {
           $term_count = count($terms);
-          if ($attribute->get_visible() & $term_count < 10) {
-            if (!empty($terms)) {
-              echo '<ul class="single-product-attributes-list">';
-              echo '<h3 class="inset-title">' . wc_attribute_label($attribute->get_name()) . '</h3>';
+            if ($attribute->get_visible() & $term_count < 10) {
+              if (!empty($terms)) {
+                echo '<ul class="single-product-attributes-list">';
+                echo '<h3 class="inset-title">' . wc_attribute_label($attribute->get_name()) . '</h3>';
                     foreach ($terms as $term) {
                         echo '<li class="single-product-attributes-item">' . $term->name . '</li>';
                     }
@@ -4051,6 +4118,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
               }
             }
           }
+        }
         echo '</div>';
         echo '</div>';
       }
@@ -4080,6 +4148,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
       $this->single_product_top_content();
       $this->single_product_general_infos_block();
+      $this->single_product_financement();
       $this->single_product_stats_cursus_certifs_block();
       $this->single_product_large_attributes_block();
       $this->single_product_short_attributes_block();

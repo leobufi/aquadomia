@@ -75,8 +75,8 @@ dfn {
   font-style: italic;
 }
 mark {
-  background: var(--ast-global-color-0);
-  color: var(--ast-global-color-4);
+  background: var(--ast-global-color-4);
+  color: var(--ast-global-color-0);
 }
 small {
   font-size: 80%;
@@ -148,6 +148,13 @@ input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
+
+/* @media (min-width: 1200px) {
+  .ast-plain-container.ast-no-sidebar #primary {
+      margin-top: 100px !important;
+      margin-bottom: 20px !important;
+  }
+} */
 
 .woocommerce button.single_add_to_cart_button {
   font-family: 'Dwight Bold' !important;
@@ -834,7 +841,7 @@ textarea {
 }
 
 .ast-single-post.ast-page-builder-template .site-main > article {
-  padding-top: 3rem !important;
+  /* padding-top: 4rem !important; */
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -878,13 +885,13 @@ body {
   width: 100%;
 }
 #primary {
-  margin: 5em 0;
+  margin: 6em 0;
 }
 
 .page-title-container {
   display: flex;
   column-gap: 5rem;
-  padding: 2rem 4rem !important;
+  padding: 4rem 4rem 2rem !important;
   align-items: flex-end;
   border-bottom: 1px solid var(--ast-global-color-0);
 }
@@ -1029,6 +1036,10 @@ body {
   margin-right: unset !important;
 }
 
+.about-page .about-headline h2 {
+  color: var(--ast-global-color-4);
+}
+
 .about-page .team-main-container {
   position: absolute;
   top: 100vh;
@@ -1041,6 +1052,53 @@ body {
   color: var(--ast-global-color-4);
   margin-bottom: 0;
 }
+
+.about-page .main-wrapper {
+  border-bottom: 1px solid var(--ast-global-color-0);
+}
+
+.about-page .main-wrapper .content{
+  margin: 1.5rem 0 2.5rem 0;
+}
+
+.about-page .main-wrapper .stats-certifs{
+  display: flex;
+  column-gap: 4rem;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+}
+
+.about-page .main-wrapper .stats-certifs .stat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid var(--ast-global-color-0);
+  font-family: 'Dwight Bold';
+  font-size: 50px;
+}
+
+.about-page .main-wrapper .stats-certifs .certif{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+}
+
+.about-page .main-wrapper .stats-certifs img{
+  width: 250px;
+  object-fit: contain;
+}
+
+.about-page .main-wrapper .stats-certifs a{
+  font-family: 'Dwight';
+  font-style: italic;
+  text-decoration: underline;
+}
+
 
 .about-page .team-main-container .sub-profil-wrapper {
   padding: 2rem 4rem;
@@ -1093,6 +1151,16 @@ body {
 .about-page .team-main-container .sub-profil-wrapper .user-info .user-name .role,
 .about-page .team-main-container .main-profil-wrapper .user-info .user-name .associe{
   font-size: 30px;
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-info .user-name span{
+  font-family: 'Dwight Bold';
+}
+
+.about-page .team-main-container .main-profil-wrapper .user-info .user-name a{
+  font-family: 'Dwight';
+  font-style: italic;
+  text-decoration: underline;
 }
 
 .about-page .team-main-container .main-profil-wrapper .user-info .user-image img{
@@ -1268,13 +1336,44 @@ body {
 }
 
 .main-header-menu .menu-link:hover {
-  /* font-family: 'Dwight Bold'; */
   font-weight: 900;
+  text-decoration: underline;
 }
+
 
 .main-header-menu .menu-item {
   position: relative;
 }
+
+.main-header-menu .sub-menu .menu-item {
+  border-bottom: 1px solid var(--ast-global-color-0);
+}
+
+.main-header-menu .current-menu-item .menu-link {
+  font-weight: 900;
+  text-decoration: underline;
+}
+.main-header-menu .current-menu-item .sub-menu .menu-item a {
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.main-header-menu .current-menu-ancestor .sub-menu .current-menu-item,
+.main-header-menu .sub-menu .menu-item:hover {
+  background-color: var(--ast-global-color-0);
+}
+
+.main-header-menu .current-menu-ancestor .sub-menu .current-menu-item a,
+.main-header-menu .sub-menu .menu-item a:hover {
+  color: var(--ast-global-color-4);
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.main-header-menu .sub-menu .menu-item:last-child {
+  border-bottom: none;
+}
+
 .main-header-menu .menu-item.focus > .sub-menu,
 .main-header-menu .menu-item:hover > .sub-menu,
 .main-header-menu .menu-item > .sub-menu.toggled-on {
@@ -2445,8 +2544,8 @@ textarea {
   height: auto;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--ast-border-color);
-  border-radius: 2px;
+  border-color: var(--ast-global-color-0);
+  border-radius: 20px;
   background: var(--ast-comment-inputs-background);
   box-shadow: none;
   box-sizing: border-box;

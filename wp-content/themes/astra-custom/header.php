@@ -18,7 +18,7 @@ function replace_menu_item_with_svg($items, $args) {
 
   if ($args->theme_location == 'secondary_menu') {
 
-    $items = str_replace('Contact',
+        $items = str_replace('Contact',
           '<svg width="42" height="30" viewBox="0 0 42 30" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M38.4518 1H3.54825C2.14089 1 1 2.14089 1 3.54825V26.1432C1 27.5505 2.14089 28.6914 3.54825 28.6914H38.4518C39.8591 28.6914 41 27.5505 41 26.1432V3.54825C41 2.14089 39.8591 1 38.4518 1Z" stroke="#1C2240" stroke-miterlimit="10"/>
               <path d="M1.4082 2.20235L19.5534 17.2254C20.3527 17.8949 21.5141 17.9109 22.3316 17.2664L40.5474 2.13403" stroke="#1C2240" stroke-miterlimit="10"/>

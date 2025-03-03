@@ -17,6 +17,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if (is_page('contact') || is_page('commander') || is_page('mon-compte') ) {
+    add_filter('the_title', function($title) {
+        if (in_the_loop() && is_singular()) {
+            return '<h1 class="entry-title inset-title">' . $title . '</h1>';
+        }
+        return $title;
+    });
+}
+
 get_header(); ?>
 
 <?php if ( astra_page_layout() == 'left-sidebar' ) : ?>
@@ -26,12 +35,15 @@ get_header(); ?>
 <?php endif ?>
 
 	<div id="primary" <?php astra_primary_class(); ?>>
+    <div class="main-wrapper">
 
-		<?php astra_primary_content_top(); ?>
+      <?php astra_primary_content_top(); ?>
 
-		<?php astra_content_page_loop(); ?>
+      <?php astra_content_page_loop(); ?>
 
-		<?php astra_primary_content_bottom(); ?>
+      <?php astra_primary_content_bottom(); ?>
+
+    </div>
 
 	</div><!-- #primary -->
 

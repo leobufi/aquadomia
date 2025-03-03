@@ -224,6 +224,7 @@ if ( ! function_exists( 'astra_woo_woocommerce_shop_product_content' ) ) {
       }
 			do_action( 'astra_woo_shop_summary_wrap_top' );
 
+      echo '<div>';
 			foreach ( $shop_structure as $value ) {
 
 				switch ( $value ) {
@@ -257,6 +258,7 @@ if ( ! function_exists( 'astra_woo_woocommerce_shop_product_content' ) ) {
 						break;
 				}
 			}
+      echo '</div>';
 
 			do_action( 'astra_woo_shop_summary_wrap_bottom' );
       if ( $product_title_link ) {
