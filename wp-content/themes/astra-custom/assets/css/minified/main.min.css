@@ -674,6 +674,16 @@ body {
 body:not(.logged-in) {
   position: relative;
 }
+
+body.home #colophon {
+    display: none;
+}
+
+body.home  {
+  height: 100vh;
+  overflow: hidden;
+}
+
 #page {
   position: relative;
 }
@@ -701,8 +711,141 @@ a {
   display: none;
 }
 
-footer {
-  display: none;
+#colophon {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+body.footer-ready #colophon {
+    opacity: 1;
+}
+
+/* Footer Principal */
+.site-footer {
+    font-family: 'Dwight', sans-serif;
+    padding: 2rem;
+    border-top: 1px solid var(--ast-global-color-0);
+    background-color: var(--ast-global-color-4);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Section principale du footer */
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.footer-formation,
+.footer-address {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  white-space: pre-line;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-formation p,
+.footer-address p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style pour la première ligne en gras */
+.footer-address p:first-child,
+.footer-address strong:first-child {
+    font-family: 'Dwight Bold';
+    display: block;
+}
+
+/* Section contact */
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer-contact .contact-separator {
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin: 15px 0;
+}
+.footer-contact .contact-email,
+.footer-contact .contact-phone {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-contact .contact-email svg,
+.footer-contact .contact-phone svg {
+  color: var(--ast-global-color-4);
+}
+
+/* Section inférieure du footer */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Section réseaux sociaux */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    display: block;
+    text-decoration: none;
+}
+
+/* Section liens légaux et copyright */
+.legal-copyright {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.legal-copyright a {
+    text-decoration: none;
+}
+
+.legal-copyright a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    margin-left: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .footer-main {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .legal-copyright {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .copyright {
+        margin-left: 0;
+        margin-top: 20px;
+    }
 }
 
 .capitalize {
@@ -1101,7 +1244,7 @@ body {
 
 
 .about-page .team-main-container .sub-profil-wrapper {
-  padding: 2rem 4rem;
+  padding: 2rem 4rem 4rem;
 }
 
 .about-page .team-main-container .sub-profil-wrapper .slick-track {
@@ -2043,8 +2186,50 @@ body {
 .site-header-section > div:last-child {
   padding-right: 0;
 }
+
+
 .site-header-section .ast-builder-menu {
   align-items: center;
+}
+
+/* Header - Weglot section
+--------------------------------------------- */
+
+.site-header-primary-section-right .ast-builder-html-element .country-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 0.5rem;
+  margin-right: 1rem;
+  font-family: 'Dwight';
+}
+
+.site-header-primary-section-right .ast-builder-html-element .country-selector .wgcurrent.wg-li {
+  width: 37px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  background-color: var(--ast-global-color-0);
+  color: var(--ast-global-color-4);
+}
+
+.site-header-primary-section-right .ast-builder-html-element .country-selector .wg-li {
+  width: 37px;
+  height: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem;
+  background-color: var(--ast-global-color-4);
+  color: var(--ast-global-color-0);
+  border: 1px solid var(--ast-global-color-0);
+}
+
+.site-header-primary-section-right .ast-builder-html-element .country-selector.weglot-inline a:hover {
+  text-decoration: underline;
+  color: var(--ast-global-color-0);
 }
 
 .ast-builder-layout-element.ast-header-search {
@@ -2072,12 +2257,12 @@ body {
   display: block;
   position: absolute;
   top: 56px;
-  left: -47px;
+  left: -85px;
   border-radius: 10px;
   background-color: var(--ast-global-color-0);
   color: #FFF;
   padding: 0.25rem 0.5rem;
-  width: 6.5rem;
+  width: 10rem;
 }
 
 

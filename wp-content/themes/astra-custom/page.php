@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 if (is_page('contact') || is_page('commander') || is_page('mon-compte') ) {
     add_filter('the_title', function($title) {
         if (in_the_loop() && is_singular()) {
-            return '<h1 class="entry-title inset-title">' . $title . '</h1>';
+            return '<h1 class="entry-title inset-title" itemprop="headline">' . $title . '</h1>';
         }
         return $title;
     });

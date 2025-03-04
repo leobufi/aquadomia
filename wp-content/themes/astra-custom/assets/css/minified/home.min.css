@@ -4,10 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
-  padding-top: 115px;
-  overflow: hidden;
+  padding-top: 6rem;
 }
 
 .hero_home_logo-block {
@@ -73,7 +70,7 @@ object-fit: cover;
 }
 
 .hero_home_categories.hidden {
-  transform: translateY(100%);
+  transform: translateY(120%);
 }
 
 .hero_home_categories.slide-in {
@@ -82,15 +79,15 @@ object-fit: cover;
 
 @keyframes bounce {
   0% {
-    transform: translateY(100%) scale(1);  /* Partie cachée en bas */
+    transform: translateY(120%) scale(1);  /* Partie cachée en bas */
     opacity: 0;
   }
   60% {
-    transform: translateY(-70%) scale(1.1); /* Légèrement au-dessus de la position finale */
+    transform: translateY(-60%) scale(1.1); /* Légèrement au-dessus de la position finale */
     opacity: 1;
   }
   100% {
-    transform: translateY(-60%) scale(1); /* Position finale */
+    transform: translateY(-40%) scale(1); /* Position finale */
     opacity: 1;
   }
 }

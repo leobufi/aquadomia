@@ -28,7 +28,7 @@ function replace_menu_item_with_svg($items, $args) {
           </div>'
         , $items);
 
-        $phone_contact = get_admin_phone_contact();
+        $phone_contact = get_theme_mod('contact_phone', '01 23 45 67 89');
 
         $svg =
         '<div class="menu-contact-icons">
@@ -51,19 +51,6 @@ function replace_menu_item_with_svg($items, $args) {
 }
 add_filter('wp_nav_menu_items', 'replace_menu_item_with_svg', 10, 2);
 
-function get_admin_phone_contact() {
-    $admins = get_users(array(
-        'role' => 'administrator',
-    ));
-
-    if (!empty($admins)) {
-        $admin = $admins[0];
-        $phone_contact = get_user_meta($admin->ID, 'phone_contact', true);
-        return $phone_contact;
-    }
-
-    return '';
-}
 
 ?><!DOCTYPE html>
 <?php astra_html_before(); ?>

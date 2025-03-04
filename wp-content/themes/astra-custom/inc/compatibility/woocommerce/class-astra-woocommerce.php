@@ -3830,7 +3830,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
         return $processed_content;
       }
 
-      echo '<div class="main-wrapper">';
+      echo '<div class="main-wrapper pdg-top-sml">';
       echo '<div class="single-product-2cols-grid">';
       echo '<div class="single-product-first-col">';
 
@@ -3946,7 +3946,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 
       if ($formation_financable) {
       ?>
-        <div class="main-wrapper">
+        <div class="main-wrapper pdg-top-sml">
           <div class="single-product-flex-around">
             <div class="block">
               <div class="title">
@@ -3962,12 +3962,16 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
               <div class="contact">
                 <div class="email">
                   <?php echo $contact_icon; ?>
-                  <span>contact@aquadomia.com</span>
+                  <span>
+                    <?php echo get_theme_mod('contact_email'); ?>
+                  </span>
                 </div>
                 <hr>
                 <div class="phone">
                   <?php echo $phone_icon; ?>
-                  <span>+33 (0)4 13 333 800</span>
+                  <span>
+                    <?php echo get_theme_mod('contact_phone'); ?>
+                  </span>
                 </div>
               </div>
             </div>
@@ -3995,7 +3999,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
         //   var_dump($stats_cursus_certifs);
         // echo '</pre>';
         if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
-          echo '<div class="main-wrapper stats">';
+          echo '<div class="main-wrapper stats pdg-top-sml">';
           echo '<div class="single-product-4cols">';
         } else if (! empty($cursus) || ! empty($logo_1) || ! empty($logo_2)) {
           echo '<div class="main-wrapper stats">';
@@ -4071,7 +4075,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
           $term_count = count($terms);
           if ($attribute->get_visible() & $term_count > 10) {
             if (!empty($terms)) {
-              echo '<div class="main-wrapper large">';
+              echo '<div class="main-wrapper large pdg-top-sml">';
                 echo '<h3 class="inset-title">' . wc_attribute_label($attribute->get_name()) . '</h3>';
                   echo '<div class="single-product-attributes-columns">';
                   $terms_per_column = ceil($term_count / 3);
@@ -4101,7 +4105,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       });
 
       if (! empty($visible_attributes)) {
-        echo '<div class="main-wrapper">';
+        echo '<div class="main-wrapper pdg-top-sml">';
         echo '<div class="single-product-attributes-columns">';
         foreach ($attributes as $attribute) {
           $terms = $attribute->get_terms();
@@ -4132,7 +4136,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
         );
 
         if ($dopbsp_woocommerce_options['calendar'] != '' && $dopbsp_woocommerce_options['calendar'] != '0') {
-            echo '<div id="calendar" class="main-wrapper no-borders">';
+            echo '<div id="calendar" class="main-wrapper no-borders pdg-top-sml">';
             echo '<h3 class="inset-title">Le Calendrier</h3>';
             echo '</div>';
         }
@@ -4177,14 +4181,14 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 							/**
                * Add rating on single product page for all products.
 							 */
-              echo '<div class="main-wrapper">';
+              echo '<div class="main-wrapper pdg-top-sml">';
 							do_action( 'astra_woo_single_rating_before' );
 							woocommerce_template_single_rating();
 							do_action( 'astra_woo_single_rating_after' );
               echo '</div>';
 							break;
 						case 'short_desc':
-              echo '<div class="main-wrapper">';
+              echo '<div class="main-wrapper pdg-top-sml">';
 							do_action( 'astra_woo_single_short_description_before' );
 							woocommerce_template_single_excerpt();
 							do_action( 'astra_woo_single_short_description_after' );
@@ -4202,7 +4206,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 							/** @psalm-suppress UndefinedClass */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 							if ( $astra_addons_condition && is_callable( array( ASTRA_Ext_WooCommerce_Markup::get_instance(), 'single_product_extras' ) ) ) {
 								/** @psalm-suppress UndefinedClass */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
-                echo '<div class="main-wrapper">';
+                echo '<div class="main-wrapper pdg-top-sml">';
 								do_action( 'astra_woo_single_extras_before' );
 								ASTRA_Ext_WooCommerce_Markup::get_instance()->single_product_extras();
 								do_action( 'astra_woo_single_extras_after' );
@@ -4213,14 +4217,14 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 							/** @psalm-suppress UndefinedClass */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
 
 								/** @psalm-suppress UndefinedClass */ // phpcs:ignore Generic.Commenting.DocComment.MissingShort
-                echo '<div class="main-wrapper">';
+                echo '<div class="main-wrapper pdg-top-sml">';
 								do_action( 'astra_woo_single_product_payments_before' );
 								$this->woocommerce_product_single_payments();
 								do_action( 'astra_woo_single_product_payments_after' );
                 echo '</div>';
 							break;
 						case 'meta':
-              echo '<div class="main-wrapper">';
+              echo '<div class="main-wrapper pdg-top-sml">';
 							do_action( 'astra_woo_single_category_before' );
 							woocommerce_template_single_meta();
 							do_action( 'astra_woo_single_category_after' );

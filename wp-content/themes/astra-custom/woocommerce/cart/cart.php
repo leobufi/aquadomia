@@ -154,6 +154,65 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
+			<!-- Titre de la section assurances -->
+			<tr class="insurance-title-row">
+				<td colspan="6">
+					<h4>Assurances annulation</h4>
+				</td>
+			</tr>
+
+			<!-- Ajout des assurances dans le format tableau -->
+			<?php
+			$insurance_ids = get_insurance_ids();
+			$insurance_products = array(
+				'basic' => $insurance_ids['basic'],
+				'premium' => $insurance_ids['premium']
+			);
+
+			foreach ($insurance_products as $type => $product_id) {
+				$product = wc_get_product($product_id);
+				if ($product) {
+					?>
+					<tr class="insurance-product-row">
+						<td class="product-remove">
+							<input type="checkbox"
+								   name="add_insurance[]"
+								   value="<?php echo esc_attr($product_id); ?>"
+								   class="insurance-checkbox"
+								   <?php checked(WC()->session->get('selected_insurance_' . $product_id), true); ?>>
+						</td>
+
+						<td class="product-thumbnail">
+							<?php echo $product->get_image(); ?>
+						</td>
+
+						<td class="product-name">
+							<?php
+							$product_permalink = $product->get_permalink();
+							echo sprintf('<a href="%s">%s</a>',
+								esc_url($product_permalink),
+								esc_html($product->get_name())
+							);
+							?>
+						</td>
+
+						<td class="product-price">
+							<?php echo $product->get_price_html(); ?>
+						</td>
+
+						<td class="product-quantity">
+							<span>1</span>
+						</td>
+
+						<td class="product-subtotal">
+							<?php echo wc_price($product->get_price()); ?>
+						</td>
+					</tr>
+					<?php
+				}
+			}
+			?>
+
 			<tr>
 				<td colspan="6" class="actions">
 

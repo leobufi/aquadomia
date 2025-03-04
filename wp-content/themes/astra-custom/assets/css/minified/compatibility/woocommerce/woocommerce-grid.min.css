@@ -1072,6 +1072,10 @@ p.demo_store[data-position="bottom"] {
   padding: 4rem 4rem;
 }
 
+.woocommerce-js .main-wrapper.pdg-top-sml {
+  padding: 2rem 4rem;
+}
+
 .woocommerce-js .summary .main-wrapper {
   border-bottom: 1px solid var(--ast-global-color-0);
 }
@@ -2540,7 +2544,7 @@ p.demo_store[data-position="bottom"] {
   padding: 9px 12px;
 }
 .woocommerce-js table.shop_table td {
-  border-top: 1px solid var(--ast-border-color);
+  /* border-top: 1px solid var(--ast-border-color); */
   padding: 6px 12px;
   vertical-align: middle;
 }
@@ -2555,7 +2559,7 @@ p.demo_store[data-position="bottom"] {
 .woocommerce-js table.shop_table tfoot td,
 .woocommerce-js table.shop_table tfoot th {
   font-weight: 500;
-  border-top: 1px solid var(--ast-global-color-0);
+  border-bottom: 1px solid var(--ast-global-color-0);
 }
 .woocommerce-js #customer_details,
 .woocommerce-js .woocommerce table.shop_table {
@@ -4742,6 +4746,46 @@ button.pswp__button--zoom:hover {
   width: 25%;
   margin-left: 2rem;
 }
+
+.insurance-product-row {
+    background-color: #e8e8e8;
+}
+
+.insurance-product-row .product-remove input[type="checkbox"] {
+    margin: 0 auto;
+    display: block;
+}
+
+.insurance-product-row .product-quantity span {
+    display: block;
+    text-align: center;
+}
+
+.insurance-title-row {
+  background-color: var(--ast-global-color-0);
+}
+
+.insurance-title-row h4 {
+    font-size: 1em;
+    color: var(--ast-global-color-4);
+    font-family: 'Dwight Bold';
+    margin-bottom: 0;
+    padding-left: 8rem;
+}
+
+.insurance-product-row td {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+}
+
+.insurance-product-row .product-name,
+.insurance-product-row .product-price,
+.insurance-product-row .product-quantity,
+.insurance-product-row .product-subtotal {
+    font-size: 0.8em;
+}
+
+
 .woocommerce-page.woocommerce-checkout form.checkout.woocommerce-checkout:after,
 .woocommerce.woocommerce-checkout form.checkout.woocommerce-checkout:after {
   content: "";

@@ -37,7 +37,7 @@ get_header(); ?>
     </div>
 
     <div class="team-main-container">
-      <div class="main-wrapper">
+      <div class="main-wrapper pdg-top-sml">
         <div class="inset-title">
           <h2>Nos formations</h2>
         </div>

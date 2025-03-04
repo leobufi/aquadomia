@@ -224,6 +224,7 @@ function enqueue_custom_scripts() {
     wp_enqueue_script( 'blog-filter', get_template_directory_uri() . '/assets/js/minified/blog-filter.min.js', array(), null, true );
     wp_enqueue_script( 'back-to-blog-btn', get_template_directory_uri() . '/assets/js/minified/back-to-blog-btn.min.js', array(), null, true );
     wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/minified/slick.min.js', array('jquery'), null, true );
+    wp_enqueue_script( 'footer', get_template_directory_uri() . '/assets/js/minified/footer.min.js', array('jquery'), null, true );
 }
 add_action( 'wp_footer', 'enqueue_custom_scripts' );
 
@@ -292,7 +293,7 @@ function custom_related_products_section() {
     $related_products = wc_get_related_products( $product->get_id() );
 
     if ( $related_products ) : ?>
-        <div class="main-wrapper">
+        <div class="main-wrapper pdg-top-sml">
             <section class="related products">
                 <?php
                 $heading = __( 'Formations Complémentaires', 'woocommerce' ); // Remplacement du titre
@@ -471,3 +472,221 @@ function load_filtered_posts() {
 }
 add_action('wp_ajax_load_filtered_posts', 'load_filtered_posts');
 add_action('wp_ajax_nopriv_load_filtered_posts', 'load_filtered_posts');
+
+
+/* HANDLE INSURANCE UPDATE */
+
+// Fonction pour obtenir les IDs d'assurance selon l'environnement
+function get_insurance_ids() {
+    // Détecter l'environnement (à adapter selon votre configuration)
+    $is_production = (strpos($_SERVER['HTTP_HOST'], 'aquadomia.wpenginepowered.com') !== false);
+    $is_production_bis = (strpos($_SERVER['HTTP_HOST'], 'aquadomia.com') !== false);
+
+    if ($is_production || $is_production_bis) {
+        return array(
+            'basic' => 56506,
+            'premium' => 56505
+        );
+    } else {
+        return array(
+            'basic' => 56477,
+            'premium' => 56480
+        );
+    }
+}
+
+// Fonction pour obtenir tous les IDs d'assurance possibles
+function get_all_insurance_ids() {
+    return array(56477, 56480, 56506, 56505);
+}
+
+// Ajouter le JavaScript pour la mise à jour AJAX
+add_action('wp_footer', 'add_insurance_ajax_script');
+function add_insurance_ajax_script() {
+    if (is_cart()) {
+        $all_insurance_ids = get_all_insurance_ids();
+        ?>
+        <script>
+        jQuery(document).ready(function($) {
+            // Gérer le changement des cases à cocher d'assurance
+            $('.insurance-checkbox').on('change', function() {
+                var $checkbox = $(this);
+
+                // Décocher les autres cases d'assurance
+                $('.insurance-checkbox').not(this).prop('checked', false);
+
+                // Activer le bouton de mise à jour du panier
+                $('button[name="update_cart"]').prop('disabled', false);
+                $('input[name="update_cart"]').prop('disabled', false);
+            });
+
+            // Gérer la suppression d'un produit du panier
+            $(document).on('click', '.remove', function(e) {
+                var $removeButton = $(this);
+                var productId = $removeButton.data('product_id');
+                var insurance_ids = ['56477', '56480', '56506', '56505'];
+
+                // Si c'est une assurance qui est supprimée
+                if (insurance_ids.includes(productId)) {
+                    e.preventDefault(); // Empêcher le comportement par défaut
+
+                    $.ajax({
+                        url: wc_add_to_cart_params.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'remove_insurance',
+                            product_id: productId,
+                            security: wc_add_to_cart_params.nonce
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                // Décocher la case correspondante
+                                $('.insurance-checkbox[value="' + productId + '"]').prop('checked', false);
+
+                                // Recharger les fragments du panier
+                                if (response.fragments) {
+                                    $.each(response.fragments, function(key, value) {
+                                        $(key).replaceWith(value);
+                                    });
+                                }
+
+                                // Activer le bouton de mise à jour
+                                $('button[name="update_cart"]').prop('disabled', false);
+                                $('input[name="update_cart"]').prop('disabled', false);
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        </script>
+        <?php
+    }
+}
+
+// Gérer la suppression AJAX de l'assurance
+add_action('wp_ajax_remove_insurance', 'handle_remove_insurance');
+add_action('wp_ajax_nopriv_remove_insurance', 'handle_remove_insurance');
+function handle_remove_insurance() {
+    check_ajax_referer('wc_add_to_cart_nonce', 'security');
+
+    if (!isset($_POST['product_id'])) {
+        wp_send_json_error();
+        return;
+    }
+
+    $product_id = absint($_POST['product_id']);
+    $insurance_products = array(56477, 56480, 56506, 56505);
+
+    // Vérifier que c'est bien une assurance
+    if (!in_array($product_id, $insurance_products)) {
+        wp_send_json_error();
+        return;
+    }
+
+    // Trouver et supprimer l'assurance du panier
+    $cart_id = WC()->cart->generate_cart_id($product_id);
+    $cart_item_key = WC()->cart->find_product_in_cart($cart_id);
+
+    if ($cart_item_key) {
+        WC()->cart->remove_cart_item($cart_item_key);
+        WC()->session->set('selected_insurance_' . $product_id, false);
+    }
+
+    // Renvoyer les fragments mis à jour
+    WC_AJAX::get_refreshed_fragments();
+}
+
+// Conserver l'état des cases à cocher après la mise à jour du panier
+add_action('woocommerce_update_cart_action_cart_updated', 'handle_insurance_update');
+function handle_insurance_update($cart_updated) {
+    $all_insurance_ids = get_all_insurance_ids();
+
+    // Supprimer d'abord toutes les assurances existantes
+    foreach (WC()->cart->get_cart() as $cart_item_key => $cart_item) {
+        if (in_array($cart_item['product_id'], $all_insurance_ids)) {
+            WC()->cart->remove_cart_item($cart_item_key);
+        }
+    }
+
+    // Réinitialiser les sessions
+    foreach ($all_insurance_ids as $id) {
+        WC()->session->set('selected_insurance_' . $id, false);
+    }
+
+    // Ajouter la nouvelle assurance si sélectionnée
+    if (isset($_POST['add_insurance']) && is_array($_POST['add_insurance'])) {
+        foreach ($_POST['add_insurance'] as $insurance_id) {
+            if (in_array($insurance_id, $all_insurance_ids)) {
+                WC()->cart->add_to_cart($insurance_id, 1);
+                WC()->session->set('selected_insurance_' . $insurance_id, true);
+            }
+        }
+    }
+
+    return $cart_updated;
+}
+
+// Restaurer l'état des cases à cocher au chargement du panier
+add_action('woocommerce_cart_loaded_from_session', 'restore_insurance_selections');
+function restore_insurance_selections() {
+    $all_insurance_ids = get_all_insurance_ids();
+
+    // Forcer la réinitialisation des sessions à false
+    foreach ($all_insurance_ids as $id) {
+        WC()->session->set('selected_insurance_' . $id, false);
+    }
+
+    // Vérifier si les produits d'assurance sont dans le panier
+    foreach (WC()->cart->get_cart() as $cart_item) {
+        if ($cart_item['product_id'] == 56477) {
+            WC()->session->set('selected_insurance_56477', true);
+        } elseif ($cart_item['product_id'] == 56480) {
+            WC()->session->set('selected_insurance_56480', true);
+        }
+    }
+}
+
+// Supprimer le message "Panier mis à jour" lors de la sélection d'assurance
+add_filter('woocommerce_cart_updated_notice_type', function($notice_type) {
+    if (isset($_POST['add_insurance'])) {
+        return 'hidden';
+    }
+    return $notice_type;
+});
+
+/* CUSTOMIZER SETTINGS */
+
+// Ajouter les champs de personnalisation
+function add_contact_customizer_settings($wp_customize) {
+    // Ajouter une nouvelle section
+    $wp_customize->add_section('contact_section', array(
+        'title'    => 'Informations de contact',
+        'priority' => 30,
+    ));
+
+    // Ajouter le champ email
+    $wp_customize->add_setting('contact_email', array(
+        'default'   => 'contact@aquadomia.com',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('contact_email', array(
+        'label'    => 'Email de contact',
+        'section'  => 'contact_section',
+        'type'     => 'email',
+    ));
+
+    // Ajouter le champ téléphone
+    $wp_customize->add_setting('contact_phone', array(
+        'default'   => '+33 (0)4 13 333 800',
+        'transport' => 'refresh',
+    ));
+
+    $wp_customize->add_control('contact_phone', array(
+        'label'    => 'Numéro de téléphone',
+        'section'  => 'contact_section',
+        'type'     => 'text',
+    ));
+}
+add_action('customize_register', 'add_contact_customizer_settings');
