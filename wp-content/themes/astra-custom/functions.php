@@ -225,10 +225,12 @@ function enqueue_custom_scripts() {
     wp_enqueue_script( 'back-to-blog-btn', get_template_directory_uri() . '/assets/js/minified/back-to-blog-btn.min.js', array(), null, true );
     wp_enqueue_script( 'slick', get_template_directory_uri() . '/assets/js/minified/slick.min.js', array('jquery'), null, true );
     wp_enqueue_script( 'footer', get_template_directory_uri() . '/assets/js/minified/footer.min.js', array('jquery'), null, true );
+    wp_enqueue_script( 'product-page', get_template_directory_uri() . '/assets/js/minified/product-page.min.js', array(), null, true );
 }
 add_action( 'wp_footer', 'enqueue_custom_scripts' );
 
 function enqueue_custom_styles() {
+    wp_enqueue_style('media-queries', get_stylesheet_directory_uri() . '/assets/css/minified/media-queries.min.css', array(), null, 'all');
     wp_enqueue_style('pinpoint-booking-custom', get_stylesheet_directory_uri() . '/assets/css/minified/compatibility/woocommerce/pinpoint-booking-custom.min.css', array('DOPBSP-css-dopselect'), '1.0', 'all');
 }
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles', 200);

@@ -25,6 +25,7 @@ p {
   font-size: 22px;
 }
 
+
 h1 {
   font-family: 'Dwight Bold';
   font-size: 40px;
@@ -36,4 +37,18 @@ h2 {
 h3 {
   font-family: 'Dwight Bold';
   font-size: 24px;
+}
+
+@media screen and (max-width: 541px) {
+  p {
+    font-size: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
 }

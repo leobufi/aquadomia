@@ -5,6 +5,8 @@
   justify-content: flex-start;
   align-items: center;
   padding-top: 6rem;
+  width: 100%;
+  height: 100vh;
 }
 
 .hero_home_logo-block {
@@ -27,6 +29,12 @@
   /* transform: scale(0); */
   opacity: 0;
   transition: opacity 2s ease-in-out;
+}
+
+.hero_home_logo-illus.slide-up {
+  /* transform: scale(0); */
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 }
 
 .hero_home_categories .wc-block-product-categories-list--has-images {
@@ -74,7 +82,7 @@ object-fit: cover;
 }
 
 .hero_home_categories.slide-in {
-  animation: bounce 1s ease-out forwards; /* Appliquer l'animation bounce */
+  animation: bounce 1s ease-out forwards;
 }
 
 @keyframes bounce {
@@ -89,5 +97,56 @@ object-fit: cover;
   100% {
     transform: translateY(-40%) scale(1); /* Position finale */
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 921px) {
+  @keyframes bounce {
+    0% {
+      transform: translateY(20%) scale(1);  /* Partie cachée en bas */
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-70%) scale(1.1); /* Légèrement au-dessus de la position finale */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-67.5%) scale(1); /* Position finale */
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  @keyframes bounce {
+    0% {
+      transform: translateY(20%) scale(1);  /* Partie cachée en bas */
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-42.5%) scale(1.1); /* Légèrement au-dessus de la position finale */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-40%) scale(1); /* Position finale */
+      opacity: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 350px) {
+  @keyframes bounce {
+    0% {
+      transform: translateY(20%) scale(1);  /* Partie cachée en bas */
+      opacity: 0;
+    }
+    60% {
+      transform: translateY(-37.5%) scale(1.1); /* Légèrement au-dessus de la position finale */
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-35%) scale(1); /* Position finale */
+      opacity: 1;
+    }
   }
 }

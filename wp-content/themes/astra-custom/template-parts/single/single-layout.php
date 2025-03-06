@@ -76,12 +76,12 @@
 
   <div <?php astra_blog_layout_class( 'single-layout-1' ); ?>>
     <div class="page-title-container">
-      <div>
+      <header class="entry-header">
         <h2>
           Le blog d'Aquadomia
         </h2>
         <span>Retrouvez toutes nos actualités !</span>
-      </div>
+      </header>
       <button id="back-to-blog-index" data-post-id="<?php the_ID(); ?>" data-post-year="<?php echo get_the_date('Y'); ?>">Retour aux articles</button>
       <script>
         document.getElementById('back-to-blog-index').addEventListener('click', function() {
@@ -111,7 +111,7 @@
 
       <?php astra_single_header_after(); ?>
 
-      <div class="main-wrapper">
+      <div class="main-wrapper article">
         <div class="entry-content clear"
         <?php
               echo wp_kses_post(

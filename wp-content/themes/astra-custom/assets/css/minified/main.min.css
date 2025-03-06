@@ -224,9 +224,12 @@ table {
 td,
 th {
   padding: 0;
-} /*!
+}
+
+/*!
  * Bootstrap v4.0.0-alpha.2 (https://getbootstrap.com)
  */
+
 .ast-container {
   max-width: 100%;
   /* background-color: var(--ast-global-color-4); */
@@ -503,6 +506,11 @@ table {
   border-width: 1px 0 0 1px;
   width: 100%;
 }
+
+table.dopbsp-wc-cart tr{
+  display: flex;
+}
+
 th {
   font-weight: 600;
 }
@@ -726,7 +734,7 @@ body.footer-ready #colophon {
     padding: 2rem;
     border-top: 1px solid var(--ast-global-color-0);
     background-color: var(--ast-global-color-4);
-    z-index: 100;
+    /* z-index: 100; */
     display: flex;
     flex-direction: column;
     gap: 2rem;
@@ -824,29 +832,6 @@ body.footer-ready #colophon {
     margin-left: 20px;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .footer-main {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-    .legal-copyright {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .copyright {
-        margin-left: 0;
-        margin-top: 20px;
-    }
-}
 
 .capitalize {
   text-transform: uppercase;
@@ -1037,6 +1022,10 @@ body {
   padding: 4rem 4rem 2rem !important;
   align-items: flex-end;
   border-bottom: 1px solid var(--ast-global-color-0);
+}
+
+.single.ast-page-builder-template .page-title-container .entry-header {
+  margin: 0;
 }
 
 .page-title-container .entry-header {
@@ -1451,6 +1440,10 @@ body {
 
 .ast-search-icon .astra-search-icon {
   font-size: 1.3em;
+}
+
+.ast-site-header-cart .ast-addon-cart-wrap .ast-woo-header-cart-info-wrap {
+  display: none;
 }
 
 .ast-site-header-cart .ast-addon-cart-wrap i.astra-icon:after {
@@ -2194,7 +2187,7 @@ body {
 
 /* Header - Weglot section
 --------------------------------------------- */
-
+.ast-builder-layout-element .ast-header-html .country-selector,
 .site-header-primary-section-right .ast-builder-html-element .country-selector {
   display: flex;
   align-items: center;
@@ -2204,6 +2197,7 @@ body {
   font-family: 'Dwight';
 }
 
+.ast-builder-layout-element .ast-header-html .country-selector .wgcurrent.wg-li,
 .site-header-primary-section-right .ast-builder-html-element .country-selector .wgcurrent.wg-li {
   width: 37px;
   height: 37px;
@@ -2215,6 +2209,7 @@ body {
   color: var(--ast-global-color-4);
 }
 
+.ast-builder-layout-element .ast-header-html .country-selector .wg-li,
 .site-header-primary-section-right .ast-builder-html-element .country-selector .wg-li {
   width: 37px;
   height: 37px;
@@ -2227,6 +2222,7 @@ body {
   border: 1px solid var(--ast-global-color-0);
 }
 
+.ast-builder-layout-element .ast-header-html .country-selector .wg-li a:hover,
 .site-header-primary-section-right .ast-builder-html-element .country-selector.weglot-inline a:hover {
   text-decoration: underline;
   color: var(--ast-global-color-0);
@@ -2247,6 +2243,10 @@ body {
 .ast-grid-right-section .menu-contact-icons {
   display: flex;
   cursor: pointer;
+}
+
+.site-header svg{
+  color: var(--ast-global-color-4);
 }
 
 .ast-grid-right-section .menu-contact-icons .phone-contact {
@@ -2591,7 +2591,7 @@ body {
   color: inherit;
 }
 .ast-menu-toggle:focus {
-  outline: thin dotted;
+  /* outline: thin dotted; */
 }
 .ast-main-header-nav-open .main-header-bar {
   padding-bottom: 0;
@@ -3062,6 +3062,7 @@ input[type="color"]::-webkit-color-swatch {
 .cat-infos_container {
   display: grid;
   grid-template-columns: 1fr 4fr 1fr;
+  column-gap: 2rem;
   border-bottom: 1px solid var(--ast-global-color-0);
   background-color: #FFFF;
   padding: 0rem 2rem 2rem 2rem;

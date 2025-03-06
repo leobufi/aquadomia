@@ -1164,7 +1164,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
 			$col                    = astra_get_option(
 				'shop-grids',
 				array(
-					'desktop' => 4,
+					'desktop' => 6,
 					'tablet'  => 3,
 					'mobile'  => 2,
 				)
@@ -3947,18 +3947,17 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       if ($formation_financable) {
       ?>
         <div class="main-wrapper pdg-top-sml">
-          <div class="single-product-flex-around">
+          <div class="single-product-flex-around pdg-top-sml">
             <div class="block">
               <div class="title">
                 <?php echo $wheel_icon; ?>
                 <span class="financement">
-                  Formation éligible au financement de formations professionnelles
+                  Formation professionnelle éligible à des financements  ( France Travail, OPCO, PRF…)
                 </span>
               </div>
-              <span>Cette formation peut être prise en charge en qualité de formation  professionnelle</span>
             </div>
             <div class="block">
-              <span>Contactez-nous pour tout renseignement ou  démarche à effectuer</span>
+              <span>Contactez nous pour tout renseignement ou démarche à effectuer</span>
               <div class="contact">
                 <div class="email">
                   <?php echo $contact_icon; ?>
@@ -3999,10 +3998,10 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
         //   var_dump($stats_cursus_certifs);
         // echo '</pre>';
         if ( $taux_reussite > 0 || $taux_satisfaction > 0  ) {
-          echo '<div class="main-wrapper stats pdg-top-sml">';
+          echo '<div id="stats" class="main-wrapper pdg-top-sml">';
           echo '<div class="single-product-4cols">';
         } else if (! empty($cursus) || ! empty($logo_1) || ! empty($logo_2)) {
-          echo '<div class="main-wrapper stats">';
+          echo '<div id="stats" class="main-wrapper pdg-top-sml"">';
           echo '<div class="single-product-flex-around">';
         }
 
@@ -4075,7 +4074,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
           $term_count = count($terms);
           if ($attribute->get_visible() & $term_count > 10) {
             if (!empty($terms)) {
-              echo '<div class="main-wrapper large pdg-top-sml">';
+              echo '<div id="competences" class="main-wrapper large pdg-top-sml">';
                 echo '<h3 class="inset-title">' . wc_attribute_label($attribute->get_name()) . '</h3>';
                   echo '<div class="single-product-attributes-columns">';
                   $terms_per_column = ceil($term_count / 3);
@@ -4105,7 +4104,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
       });
 
       if (! empty($visible_attributes)) {
-        echo '<div class="main-wrapper pdg-top-sml">';
+        echo '<div id="formation" class="main-wrapper pdg-top-sml">';
         echo '<div class="single-product-attributes-columns">';
         foreach ($attributes as $attribute) {
           $terms = $attribute->get_terms();

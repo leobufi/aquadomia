@@ -1190,7 +1190,7 @@ p.demo_store[data-position="bottom"] {
 .woocommerce-js div.product div.summary .main-wrapper .single-product-flex-around .block{
   display: flex;
   flex-direction: column;
-  row-gap: 2rem;
+  row-gap: 1rem;
 }
 
 .woocommerce-js div.product div.summary .main-wrapper .single-product-flex-around .block span{
@@ -2622,6 +2622,7 @@ p.demo_store[data-position="bottom"] {
   list-style: none outside;
   font-weight: 500;
   font-family: 'Dwight Bold';
+  display: none;
 }
 .woocommerce-js td.product-name .wc-item-meta dd,
 .woocommerce-js td.product-name dl.variation dd {
@@ -4663,6 +4664,7 @@ button.pswp__button--zoom:hover {
 }
 
 .woocommerce-cart table.shop_table td.product-name .variation .dopbsp-wc-cart tbody td {
+  min-height: 3em !important;
 }
 
 .woocommerce-cart table.shop_table td.product-name .variation .dopbsp-wc-cart tbody tr:last-child td {
