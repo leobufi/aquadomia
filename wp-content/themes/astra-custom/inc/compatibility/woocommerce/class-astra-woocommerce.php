@@ -3917,7 +3917,7 @@ if ( ! class_exists( 'Astra_Woocommerce' ) ) :
               }
               echo '</div>';
             } else {
-              echo '<div class="single-product-image">';
+              echo '<div class="single-product-image no-image">';
               $logo_id = 206;
               $logo_url = wp_get_attachment_url($logo_id);
 

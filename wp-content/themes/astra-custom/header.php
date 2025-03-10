@@ -48,7 +48,7 @@ function replace_menu_item_with_svg($items, $args) {
                       <span>Contact Mail</span>
                     </a>
                 </li>
-                <li class="phone menu-item menu-item-type-post_type menu-item-object-page border-bottom">
+                <li class="phone menu-item menu-item-type-post_type menu-item-object-page">
                     ' . $phone_svg . '
                     <span class="phone-contact">' . esc_html($phone_contact) . '</span>
                 </li>';

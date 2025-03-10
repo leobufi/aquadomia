@@ -35,7 +35,7 @@ get_header(); ?>
 <?php endif ?>
 
 	<div id="primary" <?php astra_primary_class(); ?>>
-    <div class="main-wrapper">
+    <div class="main-wrapper page">
 
       <?php astra_primary_content_top(); ?>
 

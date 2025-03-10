@@ -33,7 +33,11 @@ get_header(); ?>
         </h1>
         <span>Retrouvez toutes nos actualités !</span>
       </header>
-      <label class="filter-title" for="filter-year">Par dates 🡓</label>
+      <label class="filter-title" for="filter-year">
+        <span>Par dates</span>
+        <?php $arrow = Astra_Icons::get_icons('arrow-down'); ?>
+        <?php echo $arrow; ?>
+      </label>
     </div>
     <div class="year-filters">
       <div class="slick-slider">

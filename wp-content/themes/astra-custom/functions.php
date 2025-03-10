@@ -347,7 +347,7 @@ function custom_woocommerce_template_single_add_to_cart() {
         do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
         echo '</div>';
       } else if ($product->get_price()) {
-          echo '<div id="add-to-cart" class="main-wrapper">';
+          echo '<div id="add-to-cart" class="main-wrapper pdg-top-sml">';
           do_action( 'woocommerce_' . $product->get_type() . '_add_to_cart' );
           echo '</div>';
         }
@@ -361,22 +361,6 @@ function replace_woocommerce_add_to_cart_template() {
 }
 add_action( 'init', 'replace_woocommerce_add_to_cart_template' );
 
-
-// /* INJECTE MAIN WRAPPER PAGE PANIER */
-
-// function custom_add_main_wrapper_start() {
-//   if ( is_cart() ) {
-//     echo '<div class="main-wrapper">';
-//   }
-// }
-// add_action( 'astra_primary_content_top', 'custom_add_main_wrapper_start' );
-
-// function custom_add_main_wrapper_end() {
-//   if ( is_cart() ) {
-//     echo '</div><!-- .main-wrapper -->';
-//   }
-// }
-// add_action( 'astra_content_after', 'custom_add_main_wrapper_end' );
 
 /* INJECTE MAIN WRAPPER PAGE BOUTIQUE */
 
@@ -659,7 +643,6 @@ add_filter('woocommerce_cart_updated_notice_type', function($notice_type) {
 
 /* CUSTOMIZER SETTINGS */
 
-// Ajouter les champs de personnalisation
 function add_contact_customizer_settings($wp_customize) {
     // Ajouter une nouvelle section
     $wp_customize->add_section('contact_section', array(
@@ -692,3 +675,64 @@ function add_contact_customizer_settings($wp_customize) {
     ));
 }
 add_action('customize_register', 'add_contact_customizer_settings');
+
+
+
+// function disable_image_compression() {
+//     // Qualité maximale pour tous les types d'images
+//     add_filter('jpeg_quality', function() {
+//         return 100;
+//     });
+
+//     add_filter('wp_editor_set_quality', function() {
+//         return 100;
+//     });
+
+//     add_filter('wp_compress_image', function() {
+//         return false;
+//     });
+
+//     add_filter('webp_quality', function() {
+//         return 100;
+//     });
+
+//     // Désactiver le redimensionnement des grandes images
+//     // add_filter('big_image_size_threshold', '__return_false');
+
+//     // Forcer l'utilisation des images originales pour WooCommerce
+//     add_filter('woocommerce_get_image_size_thumbnail', function($size) {
+//         return array(
+//             'width' => 0,
+//             'height' => 0,
+//             'crop' => 0,
+//         );
+//     });
+
+//     add_filter('woocommerce_get_image_size_single', function($size) {
+//         return array(
+//             'width' => 0,
+//             'height' => 0,
+//             'crop' => 0,
+//         );
+//     });
+
+//     add_filter('woocommerce_get_image_size_gallery_thumbnail', function($size) {
+//         return array(
+//             'width' => 0,
+//             'height' => 0,
+//             'crop' => 0,
+//         );
+//     });
+
+//     // Utiliser l'image originale au lieu des tailles générées
+//     add_filter('image_downsize', function($out, $id, $size) {
+//         $img_url = wp_get_attachment_url($id);
+//         return array($img_url, 0, 0, false);
+//     }, 10, 3);
+// }
+// add_action('init', 'disable_image_compression');
+
+// // Désactiver la génération des tailles d'images supplémentaires
+// add_filter('intermediate_image_sizes_advanced', function($sizes) {
+//     return array();
+// });

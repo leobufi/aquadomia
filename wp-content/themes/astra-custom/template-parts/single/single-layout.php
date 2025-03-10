@@ -75,39 +75,38 @@
 ?>
 
   <div <?php astra_blog_layout_class( 'single-layout-1' ); ?>>
-    <div class="page-title-container">
-      <header class="entry-header">
-        <h2>
-          Le blog d'Aquadomia
-        </h2>
-        <span>Retrouvez toutes nos actualités !</span>
-      </header>
-      <button id="back-to-blog-index" data-post-id="<?php the_ID(); ?>" data-post-year="<?php echo get_the_date('Y'); ?>">Retour aux articles</button>
-      <script>
-        document.getElementById('back-to-blog-index').addEventListener('click', function() {
-            const postId = this.getAttribute('data-post-id');
-            const postYear = this.getAttribute('data-post-year');
-            const blogUrl = '<?php echo esc_url(home_url('/blog')); ?>';
-            window.location.href = `${blogUrl}?highlight=${postId}&filter_year=${postYear}`;
-        });
-      </script>
-    </div>
+      <div class="page-title-container">
+        <header class="entry-header">
+          <h2>
+            Le blog d'Aquadomia
+          </h2>
+          <span>Retrouvez toutes nos actualités !</span>
+        </header>
+        <button id="back-to-blog-index" data-post-id="<?php the_ID(); ?>" data-post-year="<?php echo get_the_date('Y'); ?>">Retour aux articles</button>
+        <script>
+          document.getElementById('back-to-blog-index').addEventListener('click', function() {
+              const postId = this.getAttribute('data-post-id');
+              const postYear = this.getAttribute('data-post-year');
+              const blogUrl = '<?php echo esc_url(home_url('/blog')); ?>';
+              window.location.href = `${blogUrl}?highlight=${postId}&filter_year=${postYear}`;
+          });
+          </script>
+      </div>
+      <?php astra_single_header_before(); ?>
 
-    <?php astra_single_header_before(); ?>
+      <?php if ( apply_filters( 'astra_single_layout_one_banner_visibility', true ) ) { ?>
 
-    <?php if ( apply_filters( 'astra_single_layout_one_banner_visibility', true ) ) { ?>
+          <header class="entry-header article-wrapper <?php astra_entry_header_class(); ?>">
 
-        <header class="entry-header article-wrapper <?php astra_entry_header_class(); ?>">
+            <?php astra_single_header_top(); ?>
 
-          <?php astra_single_header_top(); ?>
+            <?php astra_banner_elements_order(); ?>
 
-          <?php astra_banner_elements_order(); ?>
+            <?php astra_single_header_bottom(); ?>
 
-          <?php astra_single_header_bottom(); ?>
+          </header><!-- .entry-header -->
 
-        </header><!-- .entry-header -->
-
-    <?php } ?>
+      <?php } ?>
 
       <?php astra_single_header_after(); ?>
 
@@ -126,7 +125,7 @@
         >
 
         <?php astra_entry_content_before(); ?>
-        <div class="article-2cols-grid">
+        <div class="article-2cols-grid top-grid">
           <?php if ( has_post_thumbnail()) : ?>
             <div class="post-thumbnail">
               <?php the_post_thumbnail('medium'); ?>
